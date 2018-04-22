@@ -1,282 +1,1117 @@
 <!DOCTYPE html>
-<html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
   
-  <title>不止于生活。</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Coding、Logging and Life">
-<meta property="og:type" content="website">
-<meta property="og:title" content="不止于生活。">
+
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Lixin's Notes">
 <meta property="og:url" content="http://www.xlife.link/page/2/index.html">
-<meta property="og:site_name" content="不止于生活。">
-<meta property="og:description" content="Coding、Logging and Life">
+<meta property="og:site_name" content="Lixin's Notes">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="不止于生活。">
-<meta name="twitter:description" content="Coding、Logging and Life">
+<meta name="twitter:title" content="Lixin's Notes">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.xlife.link/page/2/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Lixin's Notes - Coding、Logging and Life</title>
   
-    <link rel="alternate" href="/atom.xml" title="不止于生活。" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">不止于生活。</a>
-      </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lixin's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.xlife.link"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world-in-csharp-for-emgu-cv-ef-bc-81" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/" class="article-date">
-  <time datetime="2015-09-06T11:59:43.000Z" itemprop="datePublished">2015-09-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/图像处理/">图像处理</a>►<a class="article-category-link" href="/categories/图像处理/扯淡/">扯淡</a>
+        <p class="site-subtitle">Coding、Logging and Life</p>
+      
   </div>
 
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+</div>
+
+
+
+
+<nav class="site-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/">Hello World in CSharp for Emgu CV ！</a>
-    </h1>
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
   
 
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/" itemprop="url">
+                  Hello World in CSharp for Emgu CV ！
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-09-06 19:59:43" itemprop="dateCreated datePublished" datetime="2015-09-06T19:59:43+08:00">2015-09-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:51:00" itemprop="dateModified" datetime="2018-04-22T18:51:00+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图像处理/" itemprop="url" rel="index"><span itemprop="name">图像处理</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图像处理/扯淡/" itemprop="url" rel="index"><span itemprop="name">扯淡</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>初次学习 Emgu CV  ，在官网找了个例程，捣鼓一下午终于调出来了<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> Emgu.CV;</div><div class="line"><span class="keyword">using</span> Emgu.CV.CvEnum;</div><div class="line"><span class="keyword">using</span> Emgu.CV.Structure;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">String win1 = <span class="string">"Test Window"</span>; <span class="comment">//The name of the window</span></div><div class="line">CvInvoke.NamedWindow(win1); <span class="comment">//Create the window using the specific name</span></div><div class="line"></div><div class="line">Mat img = <span class="keyword">new</span> Mat(<span class="number">200</span>, <span class="number">400</span>, DepthType.Cv8U, <span class="number">3</span>); <span class="comment">//Create a 3 channel image of 400x200</span></div><div class="line">img.SetTo(<span class="keyword">new</span> Bgr(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>).MCvScalar); <span class="comment">// set it to Blue color</span></div><div class="line"></div><div class="line"><span class="comment">//Draw "Hello, world." on the image using the specific font</span></div><div class="line">CvInvoke.PutText(</div><div class="line">   img, </div><div class="line">   <span class="string">"Hello, world"</span>, </div><div class="line">   <span class="keyword">new</span> System.Drawing.Point(<span class="number">10</span>, <span class="number">80</span>), </div><div class="line">   FontFace.HersheyComplex, </div><div class="line">   <span class="number">1.0</span>, </div><div class="line">   <span class="keyword">new</span> Bgr(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>).MCvScalar);</div><div class="line"></div><div class="line">CvInvoke.Imshow(win1, img); <span class="comment">//Show the image</span></div><div class="line">CvInvoke.WaitKey(<span class="number">0</span>);  <span class="comment">//Wait for the key pressing event</span></div><div class="line">CvInvoke.DestroyWindow(win1); <span class="comment">//Destroy the window if key is pressed</span></div></pre></td></tr></table></figure></p>
+      
+
+      
+        
+          <p>初次学习 Emgu CV  ，在官网找了个例程，捣鼓一下午终于调出来了<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> Emgu.CV;</div><div class="line"><span class="keyword">using</span> Emgu.CV.CvEnum;</div><div class="line"><span class="keyword">using</span> Emgu.CV.Structure;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">String win1 = <span class="string">"Test Window"</span>; <span class="comment">//The name of the window</span></div><div class="line">CvInvoke.NamedWindow(win1); <span class="comment">//Create the window using the specific name</span></div><div class="line"></div><div class="line">Mat img = <span class="keyword">new</span> Mat(<span class="number">200</span>, <span class="number">400</span>, DepthType.Cv8U, <span class="number">3</span>); <span class="comment">//Create a 3 channel image of 400x200</span></div><div class="line">img.SetTo(<span class="keyword">new</span> Bgr(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>).MCvScalar); <span class="comment">// set it to Blue color</span></div><div class="line"></div><div class="line"><span class="comment">//Draw "Hello, world." on the image using the specific font</span></div><div class="line">CvInvoke.PutText(</div><div class="line">   img, </div><div class="line">   <span class="string">"Hello, world"</span>, </div><div class="line">   <span class="keyword">new</span> System.Drawing.Point(<span class="number">10</span>, <span class="number">80</span>), </div><div class="line">   FontFace.HersheyComplex, </div><div class="line">   <span class="number">1.0</span>, </div><div class="line">   <span class="keyword">new</span> Bgr(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>).MCvScalar);</div><div class="line"></div><div class="line">CvInvoke.Imshow(win1, img); <span class="comment">//Show the image</span></div><div class="line">CvInvoke.WaitKey(<span class="number">0</span>);  <span class="comment">//Wait for the key pressing event</span></div><div class="line">CvInvoke.DestroyWindow(win1); <span class="comment">//Destroy the window if key is pressed</span></div></pre></td></tr></table></figure></p>
 <p>官网的hello world程序如上。</p>
-        
-          <p class="article-more-link">
-            <a href="/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/" data-id="cjgasdexk000gycnuytsnjkdj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图像处理/">图像处理</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-基于51单片机和LCD1206的电子钟" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/05/10/基于51单片机和LCD1206的电子钟/" class="article-date">
-  <time datetime="2015-05-10T03:27:49.000Z" itemprop="datePublished">2015-05-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/单片机学习/">单片机学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/10/基于51单片机和LCD1206的电子钟/">基于51单片机和LCD1206的电子钟</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>带大一学弟学妹做的题目</p>
-        
-          <p class="article-more-link">
-            <a href="/2015/05/10/基于51单片机和LCD1206的电子钟/#more">Read More</a>
-          </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2015/05/10/基于51单片机和LCD1206的电子钟/" data-id="cjgasdeyg000wycnuj0wi6wuh" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-荣耀6可删系统应用列表" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/19/荣耀6可删系统应用列表/" class="article-date">
-  <time datetime="2015-03-19T05:36:53.000Z" itemprop="datePublished">2015-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/小小荣耀6/">小小荣耀6</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2015/05/10/基于51单片机和LCD1206的电子钟/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/19/荣耀6可删系统应用列表/">荣耀6可删系统应用列表</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/05/10/基于51单片机和LCD1206的电子钟/" itemprop="url">
+                  基于51单片机和LCD1206的电子钟
+                </a>
+              
+            
+          </h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-05-10 11:27:49" itemprop="dateCreated datePublished" datetime="2015-05-10T11:27:49+08:00">2015-05-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:26:49" itemprop="dateModified" datetime="2018-04-22T18:26:49+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/单片机学习/" itemprop="url" rel="index"><span itemprop="name">单片机学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p><span style="color: #ff0000;">浏览器窗口按 ctrl+F  搜索</span></p>
+      
+
+      
+        
+          <p>带大一学弟学妹做的题目</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/05/10/基于51单片机和LCD1206的电子钟/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2015/03/19/荣耀6可删系统应用列表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/03/19/荣耀6可删系统应用列表/" itemprop="url">
+                  荣耀6可删系统应用列表
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-03-19 13:36:53" itemprop="dateCreated datePublished" datetime="2015-03-19T13:36:53+08:00">2015-03-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:19:10" itemprop="dateModified" datetime="2018-04-22T18:19:10+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小小荣耀6/" itemprop="url" rel="index"><span itemprop="name">小小荣耀6</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><span style="color: #ff0000;">浏览器窗口按 ctrl+F  搜索</span></p>
 <p>此对照表仅供参考，分享给有需要的机友 删前请备份相关文件以备不时之需</p>
 <p>///内置程序对照表：</p>
 <p>///ApkBatchInstall.apkApk应用安装器不可删</p>
-        
-          <p class="article-more-link">
-            <a href="/2015/03/19/荣耀6可删系统应用列表/#more">Read More</a>
-          </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/03/19/荣耀6可删系统应用列表/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2015/03/19/荣耀6可删系统应用列表/" data-id="cjgasdezb001nycnulgbvtava" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-【转】 卡尔曼滤波的原理说明" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/04/【转】 卡尔曼滤波的原理说明/" class="article-date">
-  <time datetime="2015-03-04T13:01:00.000Z" itemprop="datePublished">2015-03-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/单片机学习/">单片机学习</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2015/03/04/【转】 卡尔曼滤波的原理说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/04/【转】 卡尔曼滤波的原理说明/">【转】 卡尔曼滤波的原理说明</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/03/04/【转】 卡尔曼滤波的原理说明/" itemprop="url">
+                  【转】 卡尔曼滤波的原理说明
+                </a>
+              
+            
+          </h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-03-04 21:01:00" itemprop="dateCreated datePublished" datetime="2015-03-04T21:01:00+08:00">2015-03-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:49:04" itemprop="dateModified" datetime="2018-04-22T18:49:04+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/单片机学习/" itemprop="url" rel="index"><span itemprop="name">单片机学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <div><br><br>学习卡尔曼滤波，在网上到处搜索资料，找到下面这篇：<br><br>在学习卡尔曼滤波器之前，首先看看为什么叫“卡尔曼”。跟其他著名的理论（例如傅立叶变换，泰勒级数等等）一样，卡尔曼也是一个人的名字，而跟他们不同的是，他是个现代人！<br><br>
+      
+
+      
         
-          <p class="article-more-link">
-            <a href="/2015/03/04/【转】 卡尔曼滤波的原理说明/#more">Read More</a>
-          </p>
+          <div><br><br>学习卡尔曼滤波，在网上到处搜索资料，找到下面这篇：<br><br>在学习卡尔曼滤波器之前，首先看看为什么叫“卡尔曼”。跟其他著名的理论（例如傅立叶变换，泰勒级数等等）一样，卡尔曼也是一个人的名字，而跟他们不同的是，他是个现代人！<br><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/03/04/【转】 卡尔曼滤波的原理说明/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2015/03/04/【转】 卡尔曼滤波的原理说明/" data-id="cjgasdey0000rycnu842d9bbm" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-查了下枚举类型，摘过来" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/19/查了下枚举类型，摘过来/" class="article-date">
-  <time datetime="2015-01-19T14:34:53.000Z" itemprop="datePublished">2015-01-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/C语言学习/">C语言学习</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2015/01/19/查了下枚举类型，摘过来/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/19/查了下枚举类型，摘过来/">查了下枚举类型，摘过来</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/19/查了下枚举类型，摘过来/" itemprop="url">
+                  查了下枚举类型，摘过来
+                </a>
+              
+            
+          </h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-01-19 22:34:53" itemprop="dateCreated datePublished" datetime="2015-01-19T22:34:53+08:00">2015-01-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:19:41" itemprop="dateModified" datetime="2018-04-22T18:19:41+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C语言学习/" itemprop="url" rel="index"><span itemprop="name">C语言学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>在程序中，可能需要为某些整数定义一个别名，我们可以利用预处理指令<span lang="EN-US" xml:lang="EN-US">#define</span>来完成这项工作，您的代码可能是：</p>
+      
+
+      
+        
+          <p>在程序中，可能需要为某些整数定义一个别名，我们可以利用预处理指令<span lang="EN-US" xml:lang="EN-US">#define</span>来完成这项工作，您的代码可能是：</p>
 <p><span lang="EN-US" xml:lang="EN-US">#define <wbr></wbr>MON <wbr></wbr> <wbr></wbr>1</p>
 <p>#define <wbr></wbr>TUE <wbr></wbr> <wbr></wbr> 2</p>
 <p>#define <wbr></wbr>WED <wbr></wbr> <wbr></wbr>3</p>
@@ -285,99 +1120,357 @@
 <p>#define <wbr></wbr>SAT <wbr></wbr> <wbr></wbr> 6</p>
 <p>#define <wbr></wbr>SUN <wbr></wbr> <wbr></wbr> 7</span></p>
 <p><span lang="EN-US" xml:lang="EN-US"> <wbr></wbr></span>
-        
-          <p class="article-more-link">
-            <a href="/2015/01/19/查了下枚举类型，摘过来/#more">Read More</a>
-          </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/01/19/查了下枚举类型，摘过来/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2015/01/19/查了下枚举类型，摘过来/" data-id="cjgasdeyg0019ycnus0bfmw4b" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-线性稳压器的基本知识摘要" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/19/线性稳压器的基本知识摘要/" class="article-date">
-  <time datetime="2015-01-19T04:33:30.000Z" itemprop="datePublished">2015-01-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/未分类/">未分类</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2015/01/19/线性稳压器的基本知识摘要/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/19/线性稳压器的基本知识摘要/">线性稳压器的基本知识摘要</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/19/线性稳压器的基本知识摘要/" itemprop="url">
+                  线性稳压器的基本知识摘要
+                </a>
+              
+            
+          </h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-01-19 12:33:30" itemprop="dateCreated datePublished" datetime="2015-01-19T12:33:30+08:00">2015-01-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:24:45" itemprop="dateModified" datetime="2018-04-22T18:24:45+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p><table cellspacing="0" cellpadding="0"></p>
+      
+
+      
+        
+          <p><table cellspacing="0" cellpadding="0"></p>
 <p><tbody></p>
 <p><tr></p>
 <p><td id="postmessage_1806339" class="t_f"><span style="color: black;">      长期以来，线性稳压器一直得到业界的广泛采用。在开关模式<span style="text-decoration: underline;">电源</span>于上世纪60年代后成为主流之前，线性稳压器曾经是电源行业的基础。即使在今天，线性稳压器仍然在众多的应用中广为使用。下面我们来就针对线性稳压器的基本知识作一一相关介绍。
-        
-          <p class="article-more-link">
-            <a href="/2015/01/19/线性稳压器的基本知识摘要/#more">Read More</a>
-          </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/01/19/线性稳压器的基本知识摘要/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2015/01/19/线性稳压器的基本知识摘要/" data-id="cjgasdeyv001hycnut6p3a8a2" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-基于MSP430G2553的数字时钟程序" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/01/12/基于MSP430G2553的数字时钟程序/" class="article-date">
-  <time datetime="2015-01-12T15:43:31.000Z" itemprop="datePublished">2015-01-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/单片机学习/">单片机学习</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2015/01/12/基于MSP430G2553的数字时钟程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/12/基于MSP430G2553的数字时钟程序/">基于MSP430G2553的数字时钟程序</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/12/基于MSP430G2553的数字时钟程序/" itemprop="url">
+                  基于MSP430G2553的数字时钟程序
+                </a>
+              
+            
+          </h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-01-12 23:43:31" itemprop="dateCreated datePublished" datetime="2015-01-12T23:43:31+08:00">2015-01-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:25:17" itemprop="dateModified" datetime="2018-04-22T18:25:17+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/单片机学习/" itemprop="url" rel="index"><span itemprop="name">单片机学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>学校电子设计基础课要交个考试作品，我选了电子钟的题目，渣渣改了几天才能</p>
+      
+
+      
+        
+          <p>学校电子设计基础课要交个考试作品，我选了电子钟的题目，渣渣改了几天才能</p>
 <p>用(┬＿┬)。</p>
 <h2 id="设计任务及要求-："><a href="#设计任务及要求-：" class="headerlink" title="设计任务及要求**：**"></a><strong>设计任务及要求**</strong>：**</h2><h3 id="基本要求："><a href="#基本要求：" class="headerlink" title="基本要求："></a><strong>基本要求：</strong></h3><p>设计采用G2553 lunchpad、LCD1602.</p>
 <p>设计一个时分秒计数器，并具有显示功能。其中时为24进制，分和秒为60进制。</p>
@@ -387,273 +1480,928 @@
 <li>设计实现数字钟的整点报时功能。</li>
 </ol>
 <h2 id="总体设计思路及功能描述-："><a href="#总体设计思路及功能描述-：" class="headerlink" title="总体设计思路及功能描述**：**"></a><strong>总体设计思路及功能描述**</strong>：**</h2><h2 id="功能描述："><a href="#功能描述：" class="headerlink" title="功能描述："></a><strong>功能描述：</strong></h2><p>本作品具有时钟和计时器两种功能。作为时钟，可以校准时、分、秒，实现正点报时，采用24小时制。并可以作为计时器使用，作为计时器，可以设置计数频率，可以随时退出计时模式，回到时钟模式。</p>
-        
-          <p class="article-more-link">
-            <a href="/2015/01/12/基于MSP430G2553的数字时钟程序/#more">Read More</a>
-          </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/01/12/基于MSP430G2553的数字时钟程序/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2015/01/12/基于MSP430G2553的数字时钟程序/" data-id="cjgasdeyg0010ycnuih0zg2cf" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-【转】电子信息工程四年学习之思" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/20/【转】电子信息工程四年学习之思/" class="article-date">
-  <time datetime="2014-09-20T09:05:56.000Z" itemprop="datePublished">2014-09-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/单片机学习/">单片机学习</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2014/09/20/【转】电子信息工程四年学习之思/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/20/【转】电子信息工程四年学习之思/">【转】电子信息工程四年学习之思</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/09/20/【转】电子信息工程四年学习之思/" itemprop="url">
+                  【转】电子信息工程四年学习之思
+                </a>
+              
+            
+          </h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-09-20 17:05:56" itemprop="dateCreated datePublished" datetime="2014-09-20T17:05:56+08:00">2014-09-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:23:38" itemprop="dateModified" datetime="2018-04-22T18:23:38+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/单片机学习/" itemprop="url" rel="index"><span itemprop="name">单片机学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>毕业后，回顾四年学习历程发现，当时以为的明白，到现在都是那时的不明白。或许是自己的经历(参加比赛比较多)导致了现在的反思。</p>
+      
+
+      
+        
+          <p>毕业后，回顾四年学习历程发现，当时以为的明白，到现在都是那时的不明白。或许是自己的经历(参加比赛比较多)导致了现在的反思。</p>
 <p>本文引用地址：<a href="http://www.eepw.com.cn/article/248969.htm">http://www.eepw.com.cn/article/248969.htm</a></p>
 <p>但是，回顾那个时候的课程设置，却都是合理的，并没有什么不足，但是又为什么会现在才意识到它们之间的联系。最终的结果是，学了很多门课，很多门孤立的课。不知道它们之间有什么联系。那个时候，又有着要多做比赛，增加实践经验的想法。于是很多时间，放在实验室。</p>
 <p>真正对于课程的深入思考就更少了，课堂上明显的疑惑还会问问老师，更深入的估计是根本就没有想到。而是想怎么能将单片机程序调出来，会了几块单片机，会用了什么液晶，会用了什么传感器，等等会用了什么模块，最后等于都在调试怎么使用模块。以及做了多少块P<a href="http://www.eepw.com.cn/news/listbylabel/label/C"><em>C</em></a>B。
-        
-          <p class="article-more-link">
-            <a href="/2014/09/20/【转】电子信息工程四年学习之思/#more">Read More</a>
-          </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/09/20/【转】电子信息工程四年学习之思/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2014/09/20/【转】电子信息工程四年学习之思/" data-id="cjgasdeyg000uycnun8vu6d1j" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-对51单片机外部中断的触发方式的研究" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/09/对51单片机外部中断的触发方式的研究/" class="article-date">
-  <time datetime="2014-09-09T13:35:57.000Z" itemprop="datePublished">2014-09-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/单片机学习/">单片机学习</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2014/09/09/对51单片机外部中断的触发方式的研究/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/09/对51单片机外部中断的触发方式的研究/">对51单片机外部中断的触发方式的研究</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/09/09/对51单片机外部中断的触发方式的研究/" itemprop="url">
+                  对51单片机外部中断的触发方式的研究
+                </a>
+              
+            
+          </h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-09-09 21:35:57" itemprop="dateCreated datePublished" datetime="2014-09-09T21:35:57+08:00">2014-09-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:30:32" itemprop="dateModified" datetime="2018-04-22T18:30:32+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/单片机学习/" itemprop="url" rel="index"><span itemprop="name">单片机学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>对51单片机的外部中断的触发方式不太明白.<br>他们的触发方式是怎样区别的,请用自己的话写一下行吗?<br>我想能简单地理解,在什么时候用电平触发,在什么时候用边沿触发,说得好我会加分,谢谢</p>
+      
+
+      
+        
+          
+            <p>对51单片机的外部中断的触发方式不太明白.<br>他们的触发方式是怎样区别的,请用自己的话写一下行吗?<br>我想能简单地理解,在什么时候用电平触发,在什么时候用边沿触发,说得好我会加分,谢谢</p>
 <p>我想知道的是触发方式的区别?</p>
 <p>1,有两种触发方式:低电平触发和下降沿触发.<br>2,当检测到外部引脚为低电平触发中断的低电平触发,当检测到外部引脚由高电平变以低电平的瞬间时触发中断的为下降触发的.<br>3,什么时候用那种方式?那种方式都是可以的.即说你要触发一个中断两种试都可以用.<br>4,注意,选择低电平触发中断后,要撤去低电平信号,不然单片机不断检测引脚为低电平就会不断发生中断.而下降沿就不会</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2014/09/09/对51单片机外部中断的触发方式的研究/" data-id="cjgasdeyg0016ycnucf6qz8hl" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-51单片机IO口输出类型摘要" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/08/51单片机IO口输出类型摘要/" class="article-date">
-  <time datetime="2014-09-08T14:10:34.000Z" itemprop="datePublished">2014-09-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/单片机学习/">单片机学习</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2014/09/08/51单片机IO口输出类型摘要/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/08/51单片机IO口输出类型摘要/">51单片机IO口输出类型摘要</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/09/08/51单片机IO口输出类型摘要/" itemprop="url">
+                  51单片机IO口输出类型摘要
+                </a>
+              
+            
+          </h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-09-08 22:10:34" itemprop="dateCreated datePublished" datetime="2014-09-08T22:10:34+08:00">2014-09-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:49:15" itemprop="dateModified" datetime="2018-04-22T18:49:15+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/单片机学习/" itemprop="url" rel="index"><span itemprop="name">单片机学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>准双向口/弱上拉，强推挽/强上拉，仅为输入/高阻，开漏</p>
+      
+
+      
+        
+          <p>准双向口/弱上拉，强推挽/强上拉，仅为输入/高阻，开漏</p>
 <p>准双向口：</p>
 <p>双向口与<a href="http://www.baidu.com/s?wd=%E5%87%86%E5%8F%8C%E5%90%91%E5%8F%A3&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">准双向口</a>的区别主要是：<a href="http://www.baidu.com/s?wd=%E5%87%86%E5%8F%8C%E5%90%91%E5%8F%A3&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">准双向口</a>I/O口操作时做<a href="http://www.baidu.com/s?wd=%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">数据输入</a>时需要对其置1,否则若前一位为<a href="http://www.baidu.com/s?wd=%E4%BD%8E%E7%94%B5%E5%B9%B3&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">低电平</a>，后一位输入的<a href="http://www.baidu.com/s?wd=%E7%94%B5%E5%B9%B3&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">电平</a>为高则MOS管拉不起来导致出错。而双向口则不需要做此动作，因为双向口有悬浮态。 <a href="http://www.baidu.com/s?wd=%E5%87%86%E5%8F%8C%E5%90%91%E5%8F%A3&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">准双向口</a>就是做输入用的时候要有向<a href="http://www.baidu.com/s?wd=%E9%94%81%E5%AD%98%E5%99%A8&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">锁存器</a>写1的这个准备动作，所以叫准双向口。 真正的双向口不需要任何预操作可直接读入读出。 1：准双向一般只能用于数字输入输出，输入时为弱上拉状态（约50K上拉），端口只有两种状态：高或低。 2：双向除用于数字输入输出外还可用于模拟输入输出，模拟输入时端口通过方向控制设置成为<a href="http://www.baidu.com/s?wd=%E9%AB%98%E9%98%BB&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">高阻</a>输入状态。双向端口有三种状态：高、低或<a href="http://www.baidu.com/s?wd=%E9%AB%98%E9%98%BB&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">高阻</a>。 3：初始状态和复位状态下准双向口为1,双向口为<a href="http://www.baidu.com/s?wd=%E9%AB%98%E9%98%BB%E7%8A%B6%E6%80%81&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">高阻状态</a>.有带些<a href="http://www.baidu.com/s?wd=%E6%AF%94%E8%BE%83%E5%99%A8&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">比较器</a>的<a href="http://www.baidu.com/s?wd=%E5%8D%95%E7%89%87%E6%9C%BA&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">单片机</a>,<a href="http://www.baidu.com/s?wd=%E6%AF%94%E8%BE%83%E5%99%A8&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">比较器</a>的输入端只能做在双向口,不能做在准双向口.所以<a href="http://www.baidu.com/s?wd=%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1&amp;hl_tag=textlink&amp;tn=SE_hldp01350_v6v6zkg6">软件设计</a>的第一步就是对 I/O 口的设置。</p>
 <p>弱上拉：
-        
-          <p class="article-more-link">
-            <a href="/2014/09/08/51单片机IO口输出类型摘要/#more">Read More</a>
-          </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2014/09/08/51单片机IO口输出类型摘要/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2014/09/08/51单片机IO口输出类型摘要/" data-id="cjgasdewa0000ycnuuqew1j17" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+  </section>
 
   
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
-</section>
+
+
+
+          </div>
+          
+
+        </div>
         
-          <aside id="sidebar">
+          
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/">C语言学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/扯淡/">扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/未分类/">未分类</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo教程/">hexo教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/上位机/">上位机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/">图像处理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/扯淡/">扯淡</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/小小荣耀6/">小小荣耀6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-
-  
+  <aside id="sidebar" class="sidebar">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo教程/">hexo教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数指针/">函数指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编/">汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡扯淡/">胡扯淡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟鼠标/">虚拟鼠标</a></li></ul>
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="lixin" />
+            
+              <p class="site-author-name" itemprop="name">lixin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
     </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Emgucv/" style="font-size: 20px;">Emgucv</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/函数指针/" style="font-size: 10px;">函数指针</a> <a href="/tags/图像处理/" style="font-size: 15px;">图像处理</a> <a href="/tags/汇编/" style="font-size: 10px;">汇编</a> <a href="/tags/胡扯淡/" style="font-size: 10px;">胡扯淡</a> <a href="/tags/虚拟鼠标/" style="font-size: 10px;">虚拟鼠标</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/04/22/如何用hexo新建文章？/">如何用hexo新建文章？</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/16/yuv序列分割成奇偶序列后编码传输/">对yuv视频奇偶列实现低损分割</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/21/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/18/C语言Hack实践/">C语言Hack实践</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/">Ubuntu terminal window always 80x1, can&#39;t resize</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lixin</span>
+
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 lixin<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

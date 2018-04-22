@@ -1,16 +1,113 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+
+
+
+
+
+
   
-  <title>【转】 卡尔曼滤波的原理说明 | 不止于生活。</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
   <meta name="description" content="学习卡尔曼滤波，在网上到处搜索资料，找到下面这篇：在学习卡尔曼滤波器之前，首先看看为什么叫“卡尔曼”。跟其他著名的理论（例如傅立叶变换，泰勒级数等等）一样，卡尔曼也是一个人的名字，而跟他们不同的是，他是个现代人！">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【转】 卡尔曼滤波的原理说明">
 <meta property="og:url" content="http://www.xlife.link/2015/03/04/【转】 卡尔曼滤波的原理说明/index.html">
-<meta property="og:site_name" content="不止于生活。">
+<meta property="og:site_name" content="Lixin's Notes">
 <meta property="og:description" content="学习卡尔曼滤波，在网上到处搜索资料，找到下面这篇：在学习卡尔曼滤波器之前，首先看看为什么叫“卡尔曼”。跟其他著名的理论（例如傅立叶变换，泰勒级数等等）一样，卡尔曼也是一个人的名字，而跟他们不同的是，他是个现代人！">
 <meta property="og:image" content="http://blog.chinaunix.net/attachment/201204/22/26694208_1335065020KHPT.jpg">
 <meta property="og:updated_time" content="2018-04-22T10:49:04.795Z">
@@ -18,218 +115,751 @@
 <meta name="twitter:title" content="【转】 卡尔曼滤波的原理说明">
 <meta name="twitter:description" content="学习卡尔曼滤波，在网上到处搜索资料，找到下面这篇：在学习卡尔曼滤波器之前，首先看看为什么叫“卡尔曼”。跟其他著名的理论（例如傅立叶变换，泰勒级数等等）一样，卡尔曼也是一个人的名字，而跟他们不同的是，他是个现代人！">
 <meta name="twitter:image" content="http://blog.chinaunix.net/attachment/201204/22/26694208_1335065020KHPT.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.xlife.link/2015/03/04/【转】 卡尔曼滤波的原理说明/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【转】 卡尔曼滤波的原理说明 | Lixin's Notes</title>
   
-    <link rel="alternate" href="/atom.xml" title="不止于生活。" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">不止于生活。</a>
-      </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lixin's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.xlife.link"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-【转】 卡尔曼滤波的原理说明" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/04/【转】 卡尔曼滤波的原理说明/" class="article-date">
-  <time datetime="2015-03-04T13:01:00.000Z" itemprop="datePublished">2015-03-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/单片机学习/">单片机学习</a>
+        <p class="site-subtitle">Coding、Logging and Life</p>
+      
   </div>
 
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+</div>
+
+
+
+
+<nav class="site-nav">
   
-    <h1 class="article-title" itemprop="name">
-      【转】 卡尔曼滤波的原理说明
-    </h1>
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
   
 
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.xlife.link/2015/03/04/【转】 卡尔曼滤波的原理说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lixin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lixin's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【转】 卡尔曼滤波的原理说明
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-03-04 21:01:00" itemprop="dateCreated datePublished" datetime="2015-03-04T21:01:00+08:00">2015-03-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-22 18:49:04" itemprop="dateModified" datetime="2018-04-22T18:49:04+08:00">2018-04-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/单片机学习/" itemprop="url" rel="index"><span itemprop="name">单片机学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/03/04/【转】 卡尔曼滤波的原理说明/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2015/03/04/【转】 卡尔曼滤波的原理说明/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <div><br><br>学习卡尔曼滤波，在网上到处搜索资料，找到下面这篇：<br><br>在学习卡尔曼滤波器之前，首先看看为什么叫“卡尔曼”。跟其他著名的理论（例如傅立叶变换，泰勒级数等等）一样，卡尔曼也是一个人的名字，而跟他们不同的是，他是个现代人！<br><br><a id="more"></a><br><br>卡尔曼全名Rudolf Emil Kalman，匈牙利数学家，1930年出生于匈牙利首都布达佩斯。1953，1954年于麻省理工学院分别获得电机工程学士及硕士学位。1957年于哥伦比亚大学获得博士学位。我们现在要学习的卡尔曼滤波器，正是源于他的博士论文和1960年发表的论文《A New Approach to Linear Filtering and Prediction Problems》（线性滤波与预测问题的新方法）。如果对这编论文有兴趣，可以到这里的地址下载：<a href="http://www.cs.unc.edu/~welch/kalman/media/pdf/Kalman1960.pdf" target="_blank" rel="external"><span style="color: #333333;"><span style="text-decoration: underline;">http://www.cs.unc.edu/~welch/kalman/media/pdf/Kalman1960.pdf</span></span></a><br><br>简单来说，卡尔曼滤波器是一个“optimal recursive data processing algorithm（最优化自回归数据处理算法）”。对于解决很大部分的问题，他是最优，效率最高甚至是最有用的。他的广泛应用已经超过30年，包括机器人导航，控制，传感器数据融合甚至在军事方面的雷达系统以及导弹追踪等等。近年来更被应用于计算机图像处理，例如头脸识别，图像分割，图像边缘检测等等。<br><br>2．卡尔曼滤波器的介绍<br>（Introduction to the Kalman Filter）<br><br>为了可以更加容易的理解卡尔曼滤波器，这里会应用形象的描述方法来讲解，而不是像大多数参考书那样罗列一大堆的数学公式和数学符号。但是，他的5条公式是其核心内容。结合现代的计算机，其实卡尔曼的程序相当的简单，只要你理解了他的那5条公式。<br><br>在介绍他的5条公式之前，先让我们来根据下面的例子一步一步的探索。<br><br>假设我们要研究的对象是一个房间的温度。根据你的经验判断，这个房间的温度是恒定的，也就是下一分钟的温度等于现在这一分钟的温度（假设我们用一分钟来做时间单位）。假设你对你的经验不是100%的相信，可能会有上下偏差几度。我们把这些偏差看成是高斯白噪声（White Gaussian Noise），也就是这些偏差跟前后时间是没有关系的而且符合高斯分配（Gaussian Distribution）。另外，我们在房间里放一个温度计，但是这个温度计也不准确的，测量值会比实际值偏差。我们也把这些偏差看成是高斯白噪声。<br><br>好了，现在对于某一分钟我们有两个有关于该房间的温度值：你根据经验的预测值（系统的预测值）和温度计的值（测量值）。下面我们要用这两个值结合他们各自的噪声来估算出房间的实际温度值。<br><br><span style="color: #ff0000;">假如我们要估算k时刻的是实际温度值</span>。首先你要根据k-1时刻的温度值，来预测k时刻的温度。因为<span style="color: #ff0000;">你相信温度是恒定的</span>，所以你会得到k时刻的温度预测值是跟k-1时刻一样的，<span style="color: #ff0000;">假设是23度</span>，同时该值的<span style="color: #ff0000;">高斯噪声的偏差是5度（</span><span style="color: #000000;">5是这样得到的：如果k-1时刻估算出的最优温度值的偏差是3，你对自己预测的不确定度是4度，他们平方相加再开方，就是5）。</span>然后，你从<span style="color: #ff0000;">温度计</span>那里得到了k时刻的温度值，假设是<span style="color: #ff0000;">25度，同时该值的偏差是4度</span>。<br><br>由于我们用于估算k时刻的实际温度有两个温度值，分别是23度和25度。<span style="color: #ff0000;">究竟实际温度是多少呢</span>？相信自己还是相信温度计呢？究竟相信谁多一点，我们可以用他们的covariance来判断。因为<span style="color: #ff0000;">Kg^2=5^2/(5^2+4^2)，</span>所以Kg=0.78，我们可以估算出k时刻的<span style="color: #ff0000;">实际温度值是：23+0.78<em>(25-23)=24.56度</em></span>。可以看出，因为温度计的covariance比较小（比较相信温度计），所以估算出的最优温度值偏向温度计的值。<br><br>现在我们已经得到k时刻的最优温度值了，下一步就是要进入k+1时刻，进行新的最优估算。到现在为止，好像还没看到什么自回归的东西出现。对了，在进入k+1时刻之前，我们还要算出k时刻那个<span style="color: #ff0000;">最优值（24.56度）的偏差</span>。算法如下<span style="color: #ff0000;">：((1-Kg)5^2)^0.5=2.35</span>。这里的5就是上面的k时刻你预测的那个23度温度值的偏差，得出的2.35就是进入k+1时刻以后k时刻估算出的最优温度值的偏差（对应于上面的3）。<br><br>就是这样，卡尔曼滤波器就不断的把covariance递归，从而估算出最优的温度值。他运行的很快，而且它只保留了上一时刻的covariance。上面的Kg，就是卡尔曼增益（Kalman Gain）。他可以随不同的时刻而改变他自己的值，是不是很神奇！<br><br>下面就要言归正传，讨论真正工程系统上的卡尔曼。<br><br>3． 卡尔曼滤波器算法<br>（The Kalman Filter Algorithm）<br><br>在这一部分，我们就来描述源于Dr Kalman 的卡尔曼滤波器。下面的描述，会涉及一些基本的概念知识，包括概率（Probability），随即变量（Random Variable），高斯或正态分配（Gaussian Distribution）还有State-space Model等等。但对于卡尔曼滤波器的详细证明，这里不能一一描述。<br><br>首先，我们先要引入一个离散控制过程的系统。该<span style="color: #ff0000;">系统</span>可用一个线性随机微分方程（Linear Stochastic Difference equation）来描述：<br><span style="color: #ff0000;">X(k)=A X(k-1)+B U(k)+W(k)</span><br>再加上系统的<span style="color: #ff0000;">测量值</span>：<br><span style="color: #ff0000;">Z(k)=H X(k)+V(k)<br></span>上两式子中，X(k)是k时刻的系统状态，U(k)是k时刻对系统的控制量。A和B是系统参数，对于多模型系统，他们为矩阵。Z(k)是k时刻的测量值，H是测量系统的参数，对于多测量系统，H为矩阵。W(k)和V(k)分别表示过程和测量的噪声。他们被假设成高斯白噪声(White Gaussian Noise)，他们的covariance 分别是Q，R（这里我们假设他们不随系统状态变化而变化）。<br><br>对于满足上面的条件(线性随机微分系统，过程和测量都是高斯白噪声)，卡尔曼滤波器是最优的信息处理器。下面我们来用他们结合他们的covariances 来估算系统的最优化输出（类似上一节那个温度的例子）。<br><br>首先我们要利用系统的过程模型，来预测下一状态的系统。假设现在的系统状态是k，根据系统的模型，可以基于系统的上一状态而预测出现在状态：<br>X(k|k-1)=A X(k-1|k-1)+B U(k) ……….. (1)<br>式(1)中，X(k|k-1)是利用上一状态预测的结果，X(k-1|k-1)是上一状态最优的结果，U(k)为现在状态的控制量，如果没有控制量，它可以为0。<br><br>到现在为止，我们的系统结果已经更新了，可是，对应于X(k|k-1)的covariance还没更新。我们用P表示covariance：<br>P(k|k-1)=A P(k-1|k-1) A’+Q ……… (2)<br>式(2)中，P(k|k-1)是X(k|k-1)对应的covariance，P(k-1|k-1)是X(k-1|k-1)对应的covariance，A’表示A的转置矩阵，Q是系统过程的covariance。式子1，2就是卡尔曼滤波器5个公式当中的前两个，也就是对系统的预测。<br><br>现在我们有了现在状态的预测结果，然后我们再收集现在状态的测量值。结合预测值和测量值，我们可以得到现在状态(k)的最优化估算值X(k|k)：<br>X(k|k)= X(k|k-1)+Kg(k) (Z(k)-H X(k|k-1)) ……… (3)<br>其中Kg为卡尔曼增益(Kalman Gain)：<br>Kg(k)= P(k|k-1) H’ / (H P(k|k-1) H’ + R) ……… (4)<br><br>到现在为止，我们已经得到了k状态下最优的估算值X(k|k)。但是为了要另卡尔曼滤波器不断的运行下去直到系统过程结束，我们还要更新k状态下X(k|k)的covariance：<br>P(k|k)=（I-Kg(k) H）P(k|k-1) ……… (5)<br>其中I 为1的矩阵，对于单模型单测量，I=1。当系统进入k+1状态时，P(k|k)就是式子(2)的P(k-1|k-1)。这样，算法就可以自回归的运算下去。<br><br>卡尔曼滤波器的原理基本描述了，式子1，2，3，4和5就是他的5 个基本公式。根据这5个公式，可以很容易的实现计算机的程序。<br><br>下面，我会用程序举一个实际运行的例子。。。<br><br>4． 简单例子<br>（A Simple Example）<br><br>这里我们结合第二第三节，举一个非常简单的例子来说明卡尔曼滤波器的工作过程。所举的例子是进一步描述第二节的例子，而且还会配以程序模拟结果。<br><br>根据第二节的描述，把房间看成一个系统，然后对这个系统建模。当然，我们见的模型不需要非常地精确。我们所知道的这个房间的温度是跟前一时刻的温度相同的，所以A=1。没有控制量，所以U(k)=0。因此得出：<br>&gt;X(k|k-1)=X(k-1|k-1) ……….. (6)<br><br>式子（2）可以改成：<br>&gt;P(k|k-1)=P(k-1|k-1) +Q ……… (7)<br><br><br>因为测量的值是温度计的，跟温度直接对应，所以H=1。式子3，4，5可以改成以下：<br>&gt;X(k|k)= X(k|k-1)+Kg(k) (Z(k)-X(k|k-1)) ……… (8)<br><br>&gt;Kg(k)= P(k|k-1) / (P(k|k-1) + R) ……… (9)<br><br>&gt;P(k|k)=（1-Kg(k)）P(k|k-1) ……… (10)<br><br>现在我们模拟一组测量值作为输入。假设房间的真实温度为25度，我模拟了200个测量值，这些测量值的平均值为25度，但是加入了标准偏差为几度的高斯白噪声（在图中为蓝线）。<br><br>为了令卡尔曼滤波器开始工作，我们需要告诉卡尔曼两个零时刻的初始值，是X(0|0)和P(0|0)。他们的值不用太在意，随便给一个就可以了，因为随着卡尔曼的工作，X会逐渐的收敛。但是对于P，一般不要取0，因为这样可能会令卡尔曼完全相信你给定的X(0|0)是系统最优的，从而使算法不能收敛。我选了X(0|0)=1度，P(0|0)=10。<br><br>该系统的真实温度为25度，图中用黑线表示。图中红线是卡尔曼滤波器输出的最优化结果（该结果在算法中设置了Q=1e-6，R=1e-1）。<br><br></div><br>&nbsp;<br>××××××××××××××××××<br><div><br><br>附matlab下面的kalman滤波程序：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">clear</div><div class="line">N=<span class="number">200</span>;</div><div class="line">w(<span class="number">1</span>)=<span class="number">0</span>;</div><div class="line">w=<span class="built_in">randn</span>(<span class="number">1</span>,N)</div><div class="line">x(<span class="number">1</span>)=<span class="number">0</span>;</div><div class="line">a=<span class="number">1</span>;</div><div class="line"><span class="keyword">for</span> k=<span class="number">2</span>:N;</div><div class="line">x(k)=a*x(k<span class="number">-1</span>)+w(k<span class="number">-1</span>);</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">V=<span class="built_in">randn</span>(<span class="number">1</span>,N);</div><div class="line">q1=std(V);</div><div class="line">Rvv=q1.^<span class="number">2</span>;</div><div class="line">q2=std(x);</div><div class="line">Rxx=q2.^<span class="number">2</span>;</div><div class="line">q3=std(w);</div><div class="line">Rww=q3.^<span class="number">2</span>;</div><div class="line">c=<span class="number">0.2</span>;</div><div class="line">Y=c*x+V;</div><div class="line"></div><div class="line">p(<span class="number">1</span>)=<span class="number">0</span>;</div><div class="line">s(<span class="number">1</span>)=<span class="number">0</span>;</div><div class="line"><span class="keyword">for</span> t=<span class="number">2</span>:N;</div><div class="line">p1(t)=a.^<span class="number">2</span>*p(t<span class="number">-1</span>)+Rww;</div><div class="line">b(t)=c*p1(t)/(c.^<span class="number">2</span>*p1(t)+Rvv);</div><div class="line">s(t)=a*s(t<span class="number">-1</span>)+b(t)*(Y(t)-a*c*s(t<span class="number">-1</span>));</div><div class="line">p(t)=p1(t)-c*b(t)*p1(t);</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">t=<span class="number">1</span>:N;</div><div class="line">plot(t,s,<span class="string">'r'</span>,t,Y,<span class="string">'g'</span>,t,x,<span class="string">'b'</span>);</div></pre></td></tr></table></figure><br><br><a href="http://blog.chinaunix.net/attachment/201204/22/26694208_1335065020KHPT.jpg" target="_blank" rel="external"><img src="http://blog.chinaunix.net/attachment/201204/22/26694208_1335065020KHPT.jpg" alt=""></a><br><br></div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://www.xlife.link/2015/03/04/【转】 卡尔曼滤波的原理说明/" data-id="cjgasdey0000rycnu842d9bbm" class="article-share-link">Share</a>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/19/荣耀6可删系统应用列表/" rel="next" title="荣耀6可删系统应用列表">
+                <i class="fa fa-chevron-left"></i> 荣耀6可删系统应用列表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/19/查了下枚举类型，摘过来/" rel="prev" title="查了下枚举类型，摘过来">
+                查了下枚举类型，摘过来 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
   </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2015/01/19/查了下枚举类型，摘过来/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
         
-          查了下枚举类型，摘过来
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="lixin" />
+            
+              <p class="site-author-name" itemprop="name">lixin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2015/03/19/荣耀6可删系统应用列表/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">荣耀6可删系统应用列表</div>
-    </a>
-  
-</nav>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lixin</span>
 
   
-</article>
 
-</section>
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/">C语言学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/扯淡/">扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/未分类/">未分类</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo教程/">hexo教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/上位机/">上位机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/">图像处理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/扯淡/">扯淡</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/小小荣耀6/">小小荣耀6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo教程/">hexo教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数指针/">函数指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编/">汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡扯淡/">胡扯淡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟鼠标/">虚拟鼠标</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Emgucv/" style="font-size: 20px;">Emgucv</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/函数指针/" style="font-size: 10px;">函数指针</a> <a href="/tags/图像处理/" style="font-size: 15px;">图像处理</a> <a href="/tags/汇编/" style="font-size: 10px;">汇编</a> <a href="/tags/胡扯淡/" style="font-size: 10px;">胡扯淡</a> <a href="/tags/虚拟鼠标/" style="font-size: 10px;">虚拟鼠标</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/04/22/如何用hexo新建文章？/">如何用hexo新建文章？</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/16/yuv序列分割成奇偶序列后编码传输/">对yuv视频奇偶列实现低损分割</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/21/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/18/C语言Hack实践/">C语言Hack实践</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/">Ubuntu terminal window always 80x1, can&#39;t resize</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 lixin<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'lizn520',
+            repo: '',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '8595a67ec2cd04f97c35a64f108264941803d437',
+            
+                client_id: '12a63ac072e28a142caa'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
