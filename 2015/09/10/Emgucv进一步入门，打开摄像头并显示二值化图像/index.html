@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Emgucv进一步入门，打开摄像头并显示二值化图像 | 不止于生活。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习了几天EmguCV，也算是进门了，现在开始处理动态扑捉摄像头的图像，然后将二值化图像显示出来。 先来个button打开摄像头，打开定时器。">
+<meta name="keywords" content="Emgucv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Emgucv进一步入门，打开摄像头并显示二值化图像">
+<meta property="og:url" content="http://www.xlife.link/2015/09/10/Emgucv进一步入门，打开摄像头并显示二值化图像/index.html">
+<meta property="og:site_name" content="不止于生活。">
+<meta property="og:description" content="学习了几天EmguCV，也算是进门了，现在开始处理动态扑捉摄像头的图像，然后将二值化图像显示出来。 先来个button打开摄像头，打开定时器。">
+<meta property="og:updated_time" content="2018-04-22T10:18:00.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Emgucv进一步入门，打开摄像头并显示二值化图像">
+<meta name="twitter:description" content="学习了几天EmguCV，也算是进门了，现在开始处理动态扑捉摄像头的图像，然后将二值化图像显示出来。 先来个button打开摄像头，打开定时器。">
+  
+    <link rel="alternate" href="/atom.xml" title="不止于生活。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不止于生活。</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.xlife.link"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Emgucv进一步入门，打开摄像头并显示二值化图像" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/10/Emgucv进一步入门，打开摄像头并显示二值化图像/" class="article-date">
+  <time datetime="2015-09-10T10:50:21.000Z" itemprop="datePublished">2015-09-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/图像处理/">图像处理</a>►<a class="article-category-link" href="/categories/图像处理/扯淡/">扯淡</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Emgucv进一步入门，打开摄像头并显示二值化图像
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习了几天EmguCV，也算是进门了，现在开始处理动态扑捉摄像头的图像，然后将二值化图像显示出来。</p>
+<p>先来个button打开摄像头，打开定时器。<a id="more"></a></p>
+<p><pre class="lang:default decode:true">        Mat img = new Mat();<br>        Capture capture;<br>        private void button2_Click(object sender, EventArgs e)<br>        {</pre></p>
+<pre><code>    capture = new Capture(1);
+    capture.Start();
+    timer1.Enabled = true;
+    imageBox2.Height = capture.Height;
+    imageBox2.Width = capture.Width;
+
+    imagebox1.Show();
+
+}&lt;/pre&gt;
+</code></pre><p>再来个100ms的Timer：</p>
+<p><pre class="lang:c# decode:true">Stopwatch watch = Stopwatch.StartNew();<br>        private void timer1_Tick(object sender, EventArgs e)<br>        {<br>            watch.Reset();<br>            watch.Start();<br>            img = capture.QueryFrame();<br>            Mat grayimg=new Mat();<br>            Mat binaryimg = new Mat();</pre></p>
+<pre><code>    CvInvoke.CvtColor(img, grayimg, ColorConversion.Bgr2Gray);
+    CvInvoke.Threshold(grayimg, binaryimg, (double)numericUpDown1.Value, 255, ThresholdType.Binary);
+    Image&amp;lt;Bgr, Byte&amp;gt; img1 = img.ToImage&amp;lt;Bgr, Byte&amp;gt;();
+
+    imageBox2.Image = binaryimg;
+
+    watch.Stop();
+    //label1.Text = watch.ElapsedMilliseconds.ToString();
+    //richTextBox1.AppendText(watch.ElapsedMilliseconds.ToString() + &apos;\n&apos;);
+
+    //CvInvoke.Imshow(&quot;test_window&quot;, binaryimg); //Show the image
+}&lt;/pre&gt;
+</code></pre><p>上面的代码实现了BGR图像到gary图像再到二值化图像的转换。</p>
+<p>处理动态图像的时候发现很多时间都消耗在了capture获取图像上，帧率略低，难道是摄像头太渣了</p>
+<p>轻喷~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.xlife.link/2015/09/10/Emgucv进一步入门，打开摄像头并显示二值化图像/" data-id="cjgaps5yx0008bgnumjh3vmek" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Emgucv/">Emgucv</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/07/EmguCV轮廓检测/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          EmguCV轮廓检测终于成功了！泪流满面~
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/18/EmguCV 求图像重心/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">EmguCV 求图像重心，很简单的函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/">C语言学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/扯淡/">扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/未分类/">未分类</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo教程/">hexo教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/上位机/">上位机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/">图像处理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/扯淡/">扯淡</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/小小荣耀6/">小小荣耀6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo教程/">hexo教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数指针/">函数指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编/">汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡扯淡/">胡扯淡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟鼠标/">虚拟鼠标</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Emgucv/" style="font-size: 20px;">Emgucv</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/函数指针/" style="font-size: 10px;">函数指针</a> <a href="/tags/图像处理/" style="font-size: 15px;">图像处理</a> <a href="/tags/汇编/" style="font-size: 10px;">汇编</a> <a href="/tags/胡扯淡/" style="font-size: 10px;">胡扯淡</a> <a href="/tags/虚拟鼠标/" style="font-size: 10px;">虚拟鼠标</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/22/如何用hexo新建文章？/">如何用hexo新建文章？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/16/yuv序列分割成奇偶序列后编码传输/">对yuv视频奇偶列实现低损分割</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/18/C语言Hack实践/">C语言Hack实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/">Ubuntu terminal window always 80x1, can&#39;t resize</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 李鑫<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

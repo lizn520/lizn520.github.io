@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>EmguCV 求图像重心，很简单的函数 | 不止于生活。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在网上找了几天资料看了些例程，总算理解了用“矩”来求重心的算法。 大多数资料的表述如此： “不规则区域的矩，表示把一个归一化的灰度级图像函数理解为一个二维随机变量的概率密度。”（我感觉这句话怪怪的，吓得我回去好好翻了翻概率论书，我觉得应该这样改成“把一个归一化的灰度级图像函数理解为一个二维随机变量的概率密度。”然后我高兴的觉得自己理解这东西了~）">
+<meta name="keywords" content="Emgucv,图像处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EmguCV 求图像重心，很简单的函数">
+<meta property="og:url" content="http://www.xlife.link/2015/09/18/EmguCV 求图像重心/index.html">
+<meta property="og:site_name" content="不止于生活。">
+<meta property="og:description" content="在网上找了几天资料看了些例程，总算理解了用“矩”来求重心的算法。 大多数资料的表述如此： “不规则区域的矩，表示把一个归一化的灰度级图像函数理解为一个二维随机变量的概率密度。”（我感觉这句话怪怪的，吓得我回去好好翻了翻概率论书，我觉得应该这样改成“把一个归一化的灰度级图像函数理解为一个二维随机变量的概率密度。”然后我高兴的觉得自己理解这东西了~）">
+<meta property="og:updated_time" content="2018-04-22T10:46:31.590Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EmguCV 求图像重心，很简单的函数">
+<meta name="twitter:description" content="在网上找了几天资料看了些例程，总算理解了用“矩”来求重心的算法。 大多数资料的表述如此： “不规则区域的矩，表示把一个归一化的灰度级图像函数理解为一个二维随机变量的概率密度。”（我感觉这句话怪怪的，吓得我回去好好翻了翻概率论书，我觉得应该这样改成“把一个归一化的灰度级图像函数理解为一个二维随机变量的概率密度。”然后我高兴的觉得自己理解这东西了~）">
+  
+    <link rel="alternate" href="/atom.xml" title="不止于生活。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不止于生活。</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.xlife.link"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-EmguCV 求图像重心" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/18/EmguCV 求图像重心/" class="article-date">
+  <time datetime="2015-09-18T08:30:21.000Z" itemprop="datePublished">2015-09-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/图像处理/">图像处理</a>►<a class="article-category-link" href="/categories/图像处理/扯淡/">扯淡</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      EmguCV 求图像重心，很简单的函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在网上找了几天资料看了些例程，总算理解了用“矩”来求重心的算法。</p>
+<p>大多数资料的表述如此：</p>
+<p>“不规则区域的<strong>矩</strong>，表示把一个<strong>归一化的灰度级图像函数</strong>理解为一个二维随机变量的<strong>概率密度</strong>。”（<span style="color: #ff6600;">我感觉这句话怪怪的，吓得我回去好好翻了翻概率论书，我觉得应该这样改成“<strong>把一个归一化的灰度级图像函数理解为一个二维随机变量的概率密度。</strong>”然后我高兴的觉得自己理解这东西了~</span>）<br><a id="more"></a></p>
+<p>这个随机变量的属性可以用<strong>统计特征–矩（Moments）</strong>来描述。通过假设非零的像素值表示区域，矩可以用于二值或灰度级的区域描述。</p>
+<p>M<sub>pq</sub> = sigma(i)sigma(j) i<sup>p </sup>j<sup>q </sup>f(i,j)</p>
+<p>其中x,y,i,j是区域点的坐标（在数字图像中的像素坐标）。</p>
+<p>令Xc,Yc表示区域重心的坐标，则：</p>
+<p>Xc = M<sub>10</sub>/M<sub>00</sub>;</p>
+<p>Yc = M<sub>01</sub>/M<sub>00</sub>;</p>
+<p>在二值图像的情况下，M<sub>00</sub>表示<strong>区域的面积</strong>。</p>
+<p>对了，我用的是emgucv3.0的库。</p>
+<p>&nbsp;</p>
+<p>在emgucv中最关键的就是这两句：</p>
+<p><pre class="lang:default decode:true">MCvMoments moment;<br>moment = CvInvoke.Moments(tem.Convert&lt;Gray,Byte&gt;(). ThresholdBinary(th2,maxth2));</pre><br>这是用emgucv库函数计算各阶矩的函数，把二值化图像作为参数传入，返回</p>
+<p>MCvMoments类型</p>
+<p>然后重心点就可以算出来了</p>
+<p><pre class="lang:default decode:true ">MCvPoint2D64f point2d64f;</pre></p>
+<p>point2d64f=moment.GravityCenter;<br>亦可以这样算<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">m00, m10, m01;</div><div class="line"></div><div class="line">m00 = moment.M00;</div><div class="line">m10 = moment.M10;</div><div class="line">m01 = moment.M01;</div><div class="line"></div><div class="line">img.Draw(<span class="keyword">new</span> Cross2DF(<span class="keyword">new</span> PointF((<span class="keyword">float</span>)(m10/m00),(<span class="keyword">float</span>)(m01/m00)),<span class="number">22</span>,<span class="number">22</span>), <span class="keyword">new</span> Gray(<span class="number">0</span>), <span class="number">1</span>);<span class="comment">//画个十字</span></div></pre></td></tr></table></figure></p>
+<p>附上我的测试button响应函数</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">button5_Click</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span></div><div class="line">        &#123;</div><div class="line"></div><div class="line">            Image&amp;lt;Gray, Byte&amp;gt; img = <span class="keyword">new</span> Image&amp;lt;Gray, Byte&amp;gt;(<span class="string">"d2.jpg"</span>);<span class="comment">// CvInvoke.Imread("l.jpg", LoadImageType.Grayscale);</span></div><div class="line">            Image&amp;lt;Bgr, <span class="keyword">byte</span>&amp;gt; tem = <span class="keyword">new</span> Image&amp;lt;Bgr, <span class="keyword">byte</span>&amp;gt;(img.Width, img.Height);</div><div class="line">            VectorOfVectorOfPoint output = <span class="keyword">new</span> VectorOfVectorOfPoint();</div><div class="line"></div><div class="line">            Gray th = <span class="keyword">new</span> Gray((<span class="keyword">double</span>) numericUpDown1.Value);</div><div class="line">            Gray maxth = <span class="keyword">new</span> Gray(<span class="number">255</span>);</div><div class="line">            imageBox2.Image = img;</div><div class="line">            imageBox2.Show();</div><div class="line">            CvInvoke.Imshow(<span class="string">"lll"</span>, img.ThresholdBinary(th, maxth));</div><div class="line"></div><div class="line">            Stopwatch watch = Stopwatch.StartNew();</div><div class="line">            <span class="keyword">try</span></div><div class="line">            &#123;</div><div class="line"></div><div class="line">                CvInvoke.FindContours(img.ThresholdBinary(th, maxth), output, <span class="keyword">new</span> Mat(), Emgu.CV.CvEnum.RetrType.List, Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">catch</span> (Exception ex)</div><div class="line">            &#123;</div><div class="line">                MessageBox.Show(ex.ToString());</div><div class="line">            &#125;</div><div class="line">            watch.Stop();</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &amp;lt; output.Size; i++)</div><div class="line">                CvInvoke.DrawContours(tem, output, i, <span class="keyword">new</span> MCvScalar(<span class="number">255</span>, <span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>), <span class="number">1</span>);</div><div class="line">            CvInvoke.Imshow(<span class="string">"Output"</span>, tem);</div><div class="line">            <span class="keyword">double</span> m00, m10, m01;</div><div class="line">            MCvMoments moment;</div><div class="line">            Gray th2 = <span class="keyword">new</span> Gray(<span class="number">100</span>);</div><div class="line">            Gray maxth2 = <span class="keyword">new</span> Gray(<span class="number">255</span>);</div><div class="line">            moment = CvInvoke.Moments(tem.Convert&amp;lt;Gray,Byte&amp;gt;(). ThresholdBinary(th2,maxth2));<span class="comment">// img.ThresholdBinary(th, maxth),false);</span></div><div class="line">                                                                                           <span class="comment">// moment.</span></div><div class="line"></div><div class="line">            CvInvoke.Imshow(<span class="string">"binary contours"</span>, tem.Convert&amp;lt;Gray, Byte&amp;gt;().ThresholdBinary(th2, maxth2));</div><div class="line">            imageBox2.Image = tem.Convert&amp;lt;Gray, Byte&amp;gt;();</div><div class="line">            m00 = moment.M00;<span class="comment">// CvInvoke.cvGetSpatialMoment(ref moment, 0, 0);</span></div><div class="line">            MessageBox.Show(m00.ToString());</div><div class="line">            m10 = moment.M10;<span class="comment">//CvInvoke.cvGetSpatialMoment(ref moment, 1, 0);</span></div><div class="line">            m01 = moment.M01;<span class="comment">//CvInvoke.cvGetSpatialMoment(ref moment, 0, 1);</span></div><div class="line">            <span class="comment">//MessageBox.Show("m10="+(m10/ m00).ToString()+"m01="+(m01/ m00).ToString());</span></div><div class="line">            img.Draw(<span class="keyword">new</span> Cross2DF(<span class="keyword">new</span> PointF((<span class="keyword">float</span>)(m10/m00),(<span class="keyword">float</span>)(m01/m00)),<span class="number">22</span>,<span class="number">22</span>), <span class="keyword">new</span> Gray(<span class="number">0</span>), <span class="number">1</span>);</div><div class="line">          imageBox2.Image = img;</div><div class="line">            MCvPoint2D64f point2d64f;</div><div class="line">            point2d64f=moment.GravityCenter;</div><div class="line">            MessageBox.Show(<span class="string">"X="</span>+point2d64f.X.ToString()+<span class="string">" "</span>+<span class="string">"y="</span>+point2d64f.Y.ToString());</div><div class="line"></div><div class="line">            MessageBox.Show(watch.ElapsedMilliseconds.ToString());</div><div class="line"></div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.xlife.link/2015/09/18/EmguCV 求图像重心/" data-id="cjgaps611001mbgnug6xaso4t" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图像处理/">图像处理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/10/Emgucv进一步入门，打开摄像头并显示二值化图像/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          Emgucv进一步入门，打开摄像头并显示二值化图像
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/30/C#用mouse_event控制鼠标，可以自制按键精灵了~/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">C#用mouse_event控制鼠标，可以自制按键精灵了~</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/">C语言学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/扯淡/">扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/未分类/">未分类</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo教程/">hexo教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/上位机/">上位机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/">图像处理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/扯淡/">扯淡</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/小小荣耀6/">小小荣耀6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo教程/">hexo教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数指针/">函数指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编/">汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡扯淡/">胡扯淡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟鼠标/">虚拟鼠标</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Emgucv/" style="font-size: 20px;">Emgucv</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/函数指针/" style="font-size: 10px;">函数指针</a> <a href="/tags/图像处理/" style="font-size: 15px;">图像处理</a> <a href="/tags/汇编/" style="font-size: 10px;">汇编</a> <a href="/tags/胡扯淡/" style="font-size: 10px;">胡扯淡</a> <a href="/tags/虚拟鼠标/" style="font-size: 10px;">虚拟鼠标</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/22/如何用hexo新建文章？/">如何用hexo新建文章？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/16/yuv序列分割成奇偶序列后编码传输/">对yuv视频奇偶列实现低损分割</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/18/C语言Hack实践/">C语言Hack实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/">Ubuntu terminal window always 80x1, can&#39;t resize</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 李鑫<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

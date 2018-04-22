@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于MSP430G2553的数字时钟程序 | 不止于生活。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学校电子设计基础课要交个考试作品，我选了电子钟的题目，渣渣改了几天才能 用(┬＿┬)。 设计任务及要求**：**基本要求：设计采用G2553 lunchpad、LCD1602. 设计一个时分秒计数器，并具有显示功能。其中时为24进制，分和秒为60进制。  **提高要求：** 设计可变的时钟计数脉冲。通过外置按键可以改变时间计数的频率，并显示此时计数脉冲的数值（单位：秒）。 设计实现时、分、秒的校准">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于MSP430G2553的数字时钟程序">
+<meta property="og:url" content="http://www.xlife.link/2015/01/12/基于MSP430G2553的数字时钟程序/index.html">
+<meta property="og:site_name" content="不止于生活。">
+<meta property="og:description" content="学校电子设计基础课要交个考试作品，我选了电子钟的题目，渣渣改了几天才能 用(┬＿┬)。 设计任务及要求**：**基本要求：设计采用G2553 lunchpad、LCD1602. 设计一个时分秒计数器，并具有显示功能。其中时为24进制，分和秒为60进制。  **提高要求：** 设计可变的时钟计数脉冲。通过外置按键可以改变时间计数的频率，并显示此时计数脉冲的数值（单位：秒）。 设计实现时、分、秒的校准">
+<meta property="og:image" content="http://www.snlook.com/wp-content/uploads/2015/01/QQ截图20150113113007-300x218.png">
+<meta property="og:updated_time" content="2018-04-22T10:25:17.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于MSP430G2553的数字时钟程序">
+<meta name="twitter:description" content="学校电子设计基础课要交个考试作品，我选了电子钟的题目，渣渣改了几天才能 用(┬＿┬)。 设计任务及要求**：**基本要求：设计采用G2553 lunchpad、LCD1602. 设计一个时分秒计数器，并具有显示功能。其中时为24进制，分和秒为60进制。  **提高要求：** 设计可变的时钟计数脉冲。通过外置按键可以改变时间计数的频率，并显示此时计数脉冲的数值（单位：秒）。 设计实现时、分、秒的校准">
+<meta name="twitter:image" content="http://www.snlook.com/wp-content/uploads/2015/01/QQ截图20150113113007-300x218.png">
+  
+    <link rel="alternate" href="/atom.xml" title="不止于生活。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不止于生活。</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.xlife.link"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-基于MSP430G2553的数字时钟程序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/12/基于MSP430G2553的数字时钟程序/" class="article-date">
+  <time datetime="2015-01-12T15:43:31.000Z" itemprop="datePublished">2015-01-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/单片机学习/">单片机学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于MSP430G2553的数字时钟程序
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学校电子设计基础课要交个考试作品，我选了电子钟的题目，渣渣改了几天才能</p>
+<p>用(┬＿┬)。</p>
+<h2 id="设计任务及要求-："><a href="#设计任务及要求-：" class="headerlink" title="设计任务及要求**：**"></a><strong>设计任务及要求**</strong>：**</h2><h3 id="基本要求："><a href="#基本要求：" class="headerlink" title="基本要求："></a><strong>基本要求：</strong></h3><p>设计采用G2553 lunchpad、LCD1602.</p>
+<p>设计一个时分秒计数器，并具有显示功能。其中时为24进制，分和秒为60进制。</p>
+<h3 id="提高要求："><a href="#提高要求：" class="headerlink" title=" **提高要求：**"></a><strong> **</strong>提高要求：**</h3><ol>
+<li>设计可变的时钟计数脉冲。通过外置按键可以改变时间计数的频率，并显示此时计数脉冲的数值（单位：秒）。</li>
+<li>设计实现时、分、秒的校准功能。通过外置按键可以设置特定的时间。</li>
+<li>设计实现数字钟的整点报时功能。</li>
+</ol>
+<h2 id="总体设计思路及功能描述-："><a href="#总体设计思路及功能描述-：" class="headerlink" title="总体设计思路及功能描述**：**"></a><strong>总体设计思路及功能描述**</strong>：**</h2><h2 id="功能描述："><a href="#功能描述：" class="headerlink" title="功能描述："></a><strong>功能描述：</strong></h2><p>本作品具有时钟和计时器两种功能。作为时钟，可以校准时、分、秒，实现正点报时，采用24小时制。并可以作为计时器使用，作为计时器，可以设置计数频率，可以随时退出计时模式，回到时钟模式。</p>
+<a id="more"></a>
+<ul>
+<li><strong>设计思路：</strong><br>考虑到只有一个按键，为了实现时间校准以及计时器控制，我们经过讨论采用了在中断中检测按键的方案，所有程序均在终端中执行。中断定时器定为1s，中断程序中秒自增，并且检测是否按键，若按下按键，则按键缓存自增，当判断到按键前后相同，则未按下按键，判断按键计数，然后后续函数判断是否满足更改模式的条件。在中断函数中使用开关语句来判断当前模式。</li>
+</ul>
+<p>在中断函数中设置switch(mode)来判断当前运行模式，并不断刷新屏幕，检测按键。</p>
+<ul>
+<li>中断函数实现：<br><pre class="lang:default decode:true">#pragma vector=TIMER0_A0_VECTOR//TIMERA0_VECTOR</pre></li>
+</ul>
+<p>__interrupt void Timer_A(void)</p>
+<p>{ </p>
+<pre><code>switch(mode)
+</code></pre><p>{     </p>
+<p>case Normal:{</p>
+<pre><code> getkey();
+
+ SEC++;
+
+ if(SEC==60)
+
+ {
+
+  SEC=0;
+
+  MIN++;
+
+ }
+
+ if(MIN==60)
+
+ {
+
+ MIN=0;
+
+ HOUR++;
+
+ }
+
+if(MIN==0&amp;amp;&amp;amp;SEC&amp;lt;=5)
+
+ {
+
+    beep(100);
+
+ }
+
+ if(HOUR==24)
+
+ {
+
+ HOUR=0;
+
+ }
+
+ update_disp();
+
+ if(KEY&amp;gt;=2)
+
+ {
+
+          KEY=0;
+
+          mode=Setting;
+
+ }
+
+  if(former_KEY!=KEY)
+
+ {
+
+   former_KEY=KEY;
+
+ }
+
+ else
+
+   KEY=0;
+
+ }break;
+</code></pre><p>  case Setting: {</p>
+<pre><code>          SETTING();break;
+
+}
+</code></pre><p>  }}<br><br>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+<li><p>在调试过程中遇到的最大问题就是如何实现按键检测，经过分析，我们设置了两个变量来记录一前一后的按键计数，如果前后数字一致表示松开按键。具体实现如下：<br>&nbsp;<br><pre class="lang:default decode:true ">if(former_KEY!=KEY&amp;&amp;KEY!=0)</pre></p>
+<pre><code>{ 
+
+  former_KEY=KEY;
+
+}
+
+else
+
+{
+
+  switch(KEY)
+
+  {
+
+    case 3:mode=Counting;KEY=0;break;
+
+    case 5:mode=Setting;KEY=0;break;
+
+  }
+</code></pre></li>
+</ul>
+<p><br>&nbsp;</p>
+<ul>
+<li>第二个问题就是如何用一个键实现完整的时间校准功能，后来经过研究，采用了开关语句来实现。具体代码如下：<br><pre class="lang:default decode:true ">void SETTING()</pre></li>
+</ul>
+<p>{ </p>
+<p>  switch(setting_mode)</p>
+<p>  {</p>
+<p>  case Set_hour:out_string(1,0,”SettingHour”);setting_hour();break;</p>
+<p>  case Set_mint:out_string(1,0,”SettingMint”);setting_mint();break; </p>
+<p>  } </p>
+<p>}<br><br>&nbsp;</p>
+<ul>
+<li>在时间设置时，如何判断是否确定所调时间是一难题，如何选择返回退出界面是一难题。我们选择延时等待来实现退出，判断是否一直按下按键来判断是否在校准时间，具体实现如下：<br>&nbsp;<br><pre class="lang:default decode:true">void setting_hour()</pre></li>
+</ul>
+<p>{</p>
+<p>  getkey();</p>
+<p>  if(KEY==24)</p>
+<pre><code>KEY=0;
+</code></pre><p>  if(former_KEY!=KEY)</p>
+<p>  {</p>
+<pre><code>change_flag=1;
+
+former_KEY=KEY;
+
+former_KEY_counter=0;
+</code></pre><p>  }</p>
+<p>  else</p>
+<pre><code>former_KEY_counter++;
+</code></pre><p>  if(former_KEY_counter&gt;=5)</p>
+<p>  {</p>
+<pre><code>if(change_flag)
+
+{
+
+  change_flag=0;
+
+  HOUR=KEY;
+
+  SEC=0;
+
+}
+
+KEY=0;
+
+former_KEY_counter=0;
+
+setting_mode=Set_mint;
+
+former_KEY=0;
+</code></pre><p>  }<br><br>&nbsp;</p>
+<p>}</p>
+<hr>
+<ul>
+<li><p><strong>调试过程中出现的问题以及解决方法</strong><br>&nbsp;</p>
+</li>
+<li><p>设计时采用LCD1602八线方案，但开发板上的按键占用3端口，按键会影响液晶的显示，故后来采用八线初始化，四线运行的模式。<br>&nbsp;</p>
+</li>
+<li><p>程序中设置了一个不断增长的变量Timer来记录秒，但是未考虑到溢出的问题。后来经考虑，决定只采用一个秒变量计时，每分钟自动归零，就避免了变量溢出。<br>&nbsp;</p>
+</li>
+<li><p>调试过程中iar软件硬件仿真不能自动识别开发板，经测试，把仿真端口选择为自动后解决问题。<br>完整程序如下：<br><pre title="完整程序" class="lang:c decode:true ">#include”msp430g2553.h”<br>#include”string.h”<br>#define uchar unsigned char<br>#define uint unsigned int<br>#define Normal 0<br>#define Setting 1<br>#define Counting 2<br>#define Set_mint 0<br>#define Set_hour 1<br>#define Set_wait 2<br>/<em>显示模式指令</em>/<br>#define LCD_Display_mode 0X38 //设置16x2显示 5x7点阵 8位数据接口<br>/<em>显示开/关及光标设置</em>/<br>#define LCD_shows0 0X0C //开显示 不显示光标 光标不闪烁<br>#define LCD_shows2 0X0E //开显示 显示光标 光标不闪烁<br>#define LCD_shows1 0X0F //开显示 显示光标 光标 闪烁<br>#define LCD_shows3 0X08 //关显示 不显示光标 光标不闪烁<br>/<em>指针设置</em>/<br>#define LCD_cursor1 0X04 //写一个字符 地址指针减1<br>#define LCD_cursor2 0X05 //写一个字符 地址指针减1 并屏幕右移<br>#define LCD_cursor3 0X06 //写一个字符 地址指针加1<br>#define LCD_cursor4 0X07 //写一个字符 地址指针加1 并屏幕左移<br>/<em>清屏指令</em>/<br>#define LCD_clear 0x01 //清屏指令 数据指针清零 所有显示清零<br>#define SET_RS P2OUT|=BIT0<br>#define RST_RS P2OUT&amp;=~BIT0<br>#define SET_RW P2OUT|=BIT1<br>#define RST_RW P2OUT&amp;=~BIT1<br>#define SET_E P2OUT|=BIT2<br>#define RST_E P2OUT&amp;=~BIT2<br>void inter_init();<br>void delayus(uint ms);<br>void write_com(uchar com);<br>void write_dat(uchar dat);<br>void lcd_init();<br>void update_disp();<br>void SETTING();<br>void COUNTING();<br>void setting_hour();<br>void setting_mint();<br>void write_4com(uchar com);<br>void write_4dat(uchar dat);<br>void getkey();<br>void out_string(uchar clear,uchar line,uchar str[]); //（是否清屏，写入行0或1，写入字符串）<br>void beep(uchar ms);<br>void count0();<br>void count1();<br>void timeadd();</pre></p>
+</li>
+</ul>
+<p>uchar time[]=”TIME:”;<br>uchar counting[]=”COUNTING”;<br>uint TIMER=0;<br>uint count=0;<br>uchar CLOCK[14]=0;<br>uchar setting_show[10]=0;<br>uchar HOUR=0;<br>uchar MIN=0;<br>uchar SEC=0;<br>uchar KEY=0;<br>uchar mode=0;<br>uchar setting_mode=Set_hour;<br>uchar setting_wait=0;<br>uchar global_key=0;<br>uchar former_KEY=0;<br>uchar former_KEY_counter=0;  //记录KEY值前后相同的次数，达到一定数字返回主页<br>uchar change_flag=0;<br>uchar count_mode=0;<br>uchar count_F=1;<br>uchar count_out[5]=0;<br>uint count_1=0;<br>int main( void )<br>{<br>  // Stop watchdog timer to prevent time out reset<br>  WDTCTL = WDTPW + WDTHOLD;<br>  lcd_init();<br>  inter_init();<br>  while(1);</p>
+<p>}<br>void inter_init()<br>{</p>
+<p>  CCTL0=CCIE;   //CCR0终端允许<br>  CCR0=32768;     //定时器时间间隔1s<br>  TACTL=TASSEL_1+MC_1;  //定时器A的时钟源为ACLK, 增计数模式<br>  _BIS_SR(LPM0_bits+GIE); //LPM0模式 总中断允许<br>}<br>void delayus(uint ms)<br>{<br>  uint i,j;<br>  for(i=0;i&lt;ms;i++)<br>    for(j=0;j&lt;1141;j++);</p>
+<p>}<br>void write_com(uchar com)<br>{<br>  RST_RS;<br>  RST_RW;<br>  P1OUT=com;<br>  SET_E;<br>  delayus(1);<br>  RST_E;<br>}<br>void write_4com(uchar com)<br>{<br>  RST_RS;<br>  RST_RW;<br>  P1OUT=com&amp;0xf0;<br>  SET_E;<br>  delayus(1);<br>  RST_E;<br>  delayus(1);<br>  P1OUT=(com&amp;0x0f)&lt;&lt;4;;<br>  SET_E;<br>  delayus(1);<br>  RST_E;<br>}</p>
+<p>void write_dat(uchar dat)<br>{</p>
+<p>  SET_RS;<br>  RST_RW;<br>  P1OUT=dat;<br>  SET_E;<br>  delayus(1);<br>  RST_E;<br>}<br>void write_4dat(uchar dat)<br>{<br>   SET_RS;<br>  RST_RW;<br>  P1OUT=dat&amp;0xf0;<br>  SET_E;<br>  delayus(1);<br>  RST_E;<br>  delayus(1);<br>  P1OUT=(dat&amp;0x0f)&lt;&lt;4;;<br>  SET_E;<br>  delayus(1);<br>  RST_E;<br>}<br>void lcd_init()<br>{</p>
+<p>  P1DIR=0xFF;<br>  P2DIR=0xFF;<br>  P2OUT&amp;=~BIT3;<br>  RST_E;<br>  write_com(0x38);<br>  delayus(5);<br>  write_com(0x01);<br>  delayus(5);<br>  write_com(0x0C);<br>  delayus(5);<br>  write_com(0x06);<br>  delayus(5);<br>  write_com(0x80);<br>  delayus(5);<br>  write_com(0x28); //设置四线</p>
+<p>}<br>void update_disp()<br>{<br>  uchar i;<br>  CLOCK[0]=(HOUR/10)%10+48;<br>  CLOCK[1]=HOUR%10+48;<br>  CLOCK[2]=’:’;<br>  CLOCK[3]=(MIN/10)%10+48;<br>  CLOCK[4]=MIN%10+48;<br>  CLOCK[5]=’:’;<br>  CLOCK[6]=(SEC/10)%10+48;<br>  CLOCK[7]=SEC%10+48;<br>  CLOCK[8]=’ ‘;<br>  CLOCK[9]=’ ‘;<br>  CLOCK[10]=’ ‘;<br>  CLOCK[11]=’ ‘;<br>  CLOCK[12]=’K’;<br>  CLOCK[13]=KEY+48;<br>    write_4com(0x80);<br>    delayus(2);<br>  for(i=0;i&lt;strlen(time);i++)<br>    write_4dat(time[i]);<br>  write_4com(0x80+0x40);<br>  delayus(2);<br>  for(i=0;i&lt;14;i++)<br>    write_4dat(CLOCK[i]);</p>
+<p>}<br>void beep(uchar ms)<br>{<br>  P2OUT|=BIT3;<br>  delayus(ms);<br>  P2OUT&amp;=~BIT3;<br>}<br>void getkey()<br>{<br>   P1DIR=0x00;<br>  if((P1IN&amp;BIT3)==0)<br>  {<br>    delayus(5);<br>    if((P1IN&amp;BIT3)==0)<br>   KEY++;<br>  }<br>  P1DIR=0xFF;<br>}</p>
+<p>void SETTING()<br>{<br>  switch(setting_mode)<br>  {<br>  case Set_hour:out_string(1,0,”Hour”);setting_hour();break;<br>  case Set_mint:out_string(1,0,”Mint”);setting_mint();break;<br>  }<br>}<br>void COUNTING()<br>{</p>
+<pre><code>  switch(count_mode)
+  {
+  case 0:out_string(1,0,&quot;CHOOSE F&quot;);count0();break;
+  case 1:count1();break;
+
+}
+</code></pre><p>}</p>
+<p>void count0()<br>{<br> getkey();</p>
+<p>  if(former_KEY!=KEY)<br>  {</p>
+<pre><code>former_KEY=KEY;
+former_KEY_counter=0;
+</code></pre><p>  }<br>  else<br>    former_KEY_counter++;</p>
+<p>  out_string(0,1,”K=”);<br>    write_4dat(KEY+48);<br>  write_4com(0x80+0x45);<br>  write_4dat(‘C’);<br>    write_4dat(former_KEY_counter+48);</p>
+<p>  if(former_KEY_counter&gt;=5)<br>  {</p>
+<pre><code>  count_F=KEY;
+KEY=0;
+former_KEY_counter=0;
+count_mode=1;
+former_KEY=0;
+
+out_string(0,1,&quot;K=&quot;);
+write_4dat(KEY+48);
+</code></pre><p>  write_4com(0x80+0x45);<br>  write_4dat(‘C’);<br>    write_4dat(former_KEY_counter+48);</p>
+<p>}<br>}</p>
+<p>void count1()<br>{<br>  out_string(1,0,”COUNTING”);<br>  count_1++;<br>  if((count_1%count_F)==0)<br>    count++;<br> getkey();<br> count_out[0]=’C’;<br> count_out[1]=’=’;<br> count_out[2]=(count/100)%10+48;<br> count_out[3]=(count/10)%10+48;<br> count_out[4]=count%10+48;<br> out_string(0,1,count_out);<br> write_4dat(‘ ‘);<br> write_4dat(‘K’);<br> write_4dat(KEY+48);<br> write_4dat(‘F’);<br> write_4dat(count_F+48);<br> if(former_KEY!=KEY&amp;&amp;KEY!=0)<br>                {</p>
+<pre><code>    former_KEY=KEY;
+
+  }
+  else
+  {
+    switch(KEY)
+    {
+      case 3:
+        mode=Normal;
+        KEY=0;
+        former_KEY=0;
+        count_mode=0;
+        count=0;
+        write_4com(0x01);
+        break;
+
+     // case 5:mode=Setting;KEY=0;break;
+
+    }
+KEY=0;
+
+  }
+</code></pre><p>}<br>void out_string(uchar clear,uchar line,uchar str[])<br>{<br>  uchar i;<br>  if(clear)<br>  write_4com(LCD_clear);<br>  if(line)<br>  write_4com(0x80+0x40);<br>  else<br>  write_4com(0x80);<br>  delayus(2);<br>  for(i=0;i&lt;strlen(str);i++)<br>    write_4dat(str[i]);<br>}</p>
+<p>void setting_hour()<br>{<br>  getkey();</p>
+<p>  if(former_KEY!=KEY)<br>  {<br>    change_flag=1;<br>    former_KEY=KEY;<br>    former_KEY_counter=0;<br>  }<br>  else<br>    former_KEY_counter++;<br>  if(KEY==24)<br>    KEY=0;<br>  count_out[0]=’H’;<br> count_out[1]=’=’;<br> count_out[2]=(KEY/10)%10+48;<br> count_out[3]=KEY%10+48;<br> count_out[4]=’ ‘;<br> out_string(0,1,count_out);<br>  write_4com(0x80+0x45);<br>  write_4dat(‘C’);<br>    write_4dat(former_KEY_counter+48);<br>    write_4dat(‘F’);<br>    write_4dat(change_flag+48);</p>
+<p>  if(former_KEY_counter&gt;=5)<br>  {<br>    if(change_flag)<br>    {<br>      change_flag=0;<br>      HOUR=KEY;<br>      SEC=0;</p>
+<pre><code>}
+
+KEY=0;
+former_KEY_counter=0;
+setting_mode=Set_mint;
+former_KEY=0;
+
+out_string(0,1,&quot;K=&quot;);
+write_4dat(KEY+48);
+</code></pre><p>  write_4com(0x80+0x45);<br>  write_4dat(‘C’);<br>    write_4dat(former_KEY_counter+48);<br>    write_4dat(‘F’);<br>    write_4dat(change_flag+48);</p>
+<p>  }</p>
+<p>}<br>void setting_mint()<br>{<br>  getkey();<br>  if(KEY==60)<br>    KEY=0;<br>  if(former_KEY!=KEY)<br>  {<br>    change_flag=1;<br>    former_KEY=KEY;<br>    former_KEY_counter=0;<br>  }<br>  else<br>    former_KEY_counter++;</p>
+<p> count_out[0]=’M’;<br> count_out[1]=’=’;<br> count_out[2]=(KEY/10)%10+48;<br> count_out[3]=KEY%10+48;<br> count_out[4]=’ ‘;<br> out_string(0,1,count_out);</p>
+<p>  write_4com(0x80+0x45);<br>  write_4dat(‘C’);<br>    write_4dat(former_KEY_counter+48);<br>     write_4dat(‘F’);<br>    write_4dat(change_flag+48);</p>
+<p>  if(former_KEY_counter&gt;=5)<br>  {<br>    if(change_flag)<br>     {<br>       change_flag=0;<br>        MIN=KEY;<br>        SEC=0;</p>
+<pre><code> }
+KEY=0;
+former_KEY_counter=0;
+setting_mode=Set_hour;
+mode=Normal;
+former_KEY=0;
+write_4com(LCD_clear);
+</code></pre><p>  }</p>
+<p>}<br>void timeadd()<br>{<br>         SEC++;<br>                if(SEC==60)<br>                        {<br>                 SEC=0;<br>                 MIN++;<br>                }<br>                if(MIN==60)<br>                {<br>                MIN=0;<br>                HOUR++;<br>                }<br>                if(HOUR==24)<br>                {<br>                HOUR=0;<br>                }<br>}</p>
+<p>#pragma vector=TIMER0_A0_VECTOR//TIMERA0_VECTOR<br>__interrupt void Timer_A(void)<br>{<br>  TIMER++;<br>  switch(mode)<br>{<br>case Normal:{</p>
+<pre><code>   getkey();
+   timeadd();
+
+   update_disp();
+
+   if(former_KEY!=KEY&amp;amp;&amp;amp;KEY!=0)
+   {
+
+     former_KEY=KEY;
+
+   }
+   else
+   {
+     switch(KEY)
+     {
+       case 3:mode=Counting;former_KEY=0;KEY=0;break;
+       case 5:mode=Setting;former_KEY=0;KEY=0;break;
+
+     }
+
+   KEY=0;
+   }
+             if(MIN==0&amp;amp;&amp;amp;SEC&amp;lt;=5)
+   {
+   beep(100);
+   }
+
+}break;  
+</code></pre><p>case Setting:  SETTING();break;</p>
+<p>case Counting:COUNTING();timeadd();break;</p>
+<p>  }<br>}</p>
+<p><br><a href="http://www.snlook.com/wp-content/uploads/2015/01/QQ截图20150113113007.png" target="_blank" rel="external"><img src="http://www.snlook.com/wp-content/uploads/2015/01/QQ截图20150113113007-300x218.png" alt="时钟接线图"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.xlife.link/2015/01/12/基于MSP430G2553的数字时钟程序/" data-id="cjgaps5zt000rbgnuwea0k9fv" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/09/20/【转】电子信息工程四年学习之思/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          【转】电子信息工程四年学习之思
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/19/线性稳压器的基本知识摘要/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">线性稳压器的基本知识摘要</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/">C语言学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/扯淡/">扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/未分类/">未分类</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo教程/">hexo教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/上位机/">上位机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/">图像处理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/扯淡/">扯淡</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/小小荣耀6/">小小荣耀6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo教程/">hexo教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数指针/">函数指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编/">汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡扯淡/">胡扯淡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟鼠标/">虚拟鼠标</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Emgucv/" style="font-size: 20px;">Emgucv</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/函数指针/" style="font-size: 10px;">函数指针</a> <a href="/tags/图像处理/" style="font-size: 15px;">图像处理</a> <a href="/tags/汇编/" style="font-size: 10px;">汇编</a> <a href="/tags/胡扯淡/" style="font-size: 10px;">胡扯淡</a> <a href="/tags/虚拟鼠标/" style="font-size: 10px;">虚拟鼠标</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/22/如何用hexo新建文章？/">如何用hexo新建文章？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/16/yuv序列分割成奇偶序列后编码传输/">对yuv视频奇偶列实现低损分割</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/18/C语言Hack实践/">C语言Hack实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/">Ubuntu terminal window always 80x1, can&#39;t resize</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 李鑫<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

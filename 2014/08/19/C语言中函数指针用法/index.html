@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C语言中函数指针用法 | 不止于生活。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="函数在内存中有一个物理位置，而这个位置是可以赋给一个指针的。一零点函数的地址就是该函数的入口点。因此，函数指针可被用来调用一个函数。函数的地址是用不带任何括号或参数的函数名来得到的。（这很类似于数组地址的得到方法，即，在只有数组名而无下标是就得到数组地址。） 怎样说明一个函数指针变量呢 ?">
+<meta name="keywords" content="函数指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言中函数指针用法">
+<meta property="og:url" content="http://www.xlife.link/2014/08/19/C语言中函数指针用法/index.html">
+<meta property="og:site_name" content="不止于生活。">
+<meta property="og:description" content="函数在内存中有一个物理位置，而这个位置是可以赋给一个指针的。一零点函数的地址就是该函数的入口点。因此，函数指针可被用来调用一个函数。函数的地址是用不带任何括号或参数的函数名来得到的。（这很类似于数组地址的得到方法，即，在只有数组名而无下标是就得到数组地址。） 怎样说明一个函数指针变量呢 ?">
+<meta property="og:updated_time" content="2018-04-22T10:23:23.234Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言中函数指针用法">
+<meta name="twitter:description" content="函数在内存中有一个物理位置，而这个位置是可以赋给一个指针的。一零点函数的地址就是该函数的入口点。因此，函数指针可被用来调用一个函数。函数的地址是用不带任何括号或参数的函数名来得到的。（这很类似于数组地址的得到方法，即，在只有数组名而无下标是就得到数组地址。） 怎样说明一个函数指针变量呢 ?">
+  
+    <link rel="alternate" href="/atom.xml" title="不止于生活。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不止于生活。</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.xlife.link"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C语言中函数指针用法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/08/19/C语言中函数指针用法/" class="article-date">
+  <time datetime="2014-08-19T04:35:04.000Z" itemprop="datePublished">2014-08-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言学习/">C语言学习</a>►<a class="article-category-link" href="/categories/C语言学习/未分类/">未分类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语言中函数指针用法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">函数在内存中有一个物理位置</span><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">，而这个位置是可以赋给一个指针的。一零点函数的地址就是该函数的入口点。因此，函数指针可被用来调用一个函数。函数的地址是用不带任何括号或参数的函数名来得到的。（这很类似于数组地址的得到方法，即，在只有数组名而无下标是就得到数组地址。）</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">怎样说明一个函数指针变量呢 ?</span></p>
+<a id="more"></a>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">为了说明一个变量 fn_pointer 的类型是”返回值为 int 的函数指针”, 你可以使用下面的说明语句：</span></p>
+<p><pre class="lang:default decode:true">int （*fn_pointer） （）；</pre><br>&nbsp;</p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">为了让编译器能正确地解释这句语句， *fn_pointer 必须用括号围起来。若漏了这对括号， 则：</span></p>
+<p><pre class="lang:default decode:true">int *fn_pointer （）；</pre><br>&nbsp;</p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">的意思完全不同了。fn_pointer 将是一个函数名， 其返回值为 int 类型的指针。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">2：函数指针变量</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">在C语言中规定，一个函数总是占用一段连续的内存区， 而函数名就是该函数所占内存区的首地址。 我们可以把函数的这个首地址 （ 或称入口地址 ） 赋予一个指针变量， 使该指针变量指向该函数。然后通过指针变量就可以找到并调用这个函数。我们把这种指向函数的指针变量称为 “ 函数指针变量 “ 。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">函数指针变量定义的一般形式为：</span></p>
+<p><pre class="lang:default decode:true">类型说明符 （* 指针变量名 ）（）；</pre><br>&nbsp;</p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">其中 “ 类型说明符 “ 表示被指函数的返回值的类型。 “（<em> 指针变量名 ）” 表示 “</em>“ 后面的变量是定义的指针变量。 最后的空括号表示指针变量所指的是一个函数。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">例如：</span></p>
+<p><pre class="lang:default decode:true"> int （*pf）（）；</pre><br>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">表示 pf 是一个指向函数入口的指针变量，该函数的返回值 （ 函数值 ） 是整型。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">下面通过例子来说明用指针形式实现对函数调用的方法。</span></p>
+<p><pre class="lang:default decode:true">int max（int a,int b）<br>{<br>if（a&gt;b）return a;<br>else return b;<br>}<br>main（）<br>{<br>int max（int a,int b）；<br>int（<em>pmax）（）；<br>int x,y,z;pmax=max;printf（”input two numbers:/n”）；<br>scanf（”%d%d”,&amp;x,&amp;y）；<br>z=（</em>pmax）（x,y）；<br>printf（”maxmum=%d”,z）；<br>}</pre><br>&nbsp;</p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">从上述程序可以看出用，函数指针变量形式调用函数的步骤如下：</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">1&gt;. 先定义函数指针变量，如后一程序中第 9 行 int （*pmax）（）； 定义 pmax 为函数指针变量。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">2&gt;. 把被调函数的入口地址 （ 函数名 ） 赋予该函数指针变量，如程序中第 11 行 pmax=max;</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">3&gt;. 用函数指针变量形式调用函数，如程序第 14 行 z=（<em>pmax）（x,y）； 调用函数的一般形式为： （</em> 指针变量名 ） （ 实参表 ） 使用函数指针变量还应注意以下两点：</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">a. 函数指针变量不能进行算术运算，这是与数组指针变量不同的。数组指针变量加减一个整数可使指针移动指向后面或前面的数组元素，而函数指针的移动是毫无意义的。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">b. 函数调用中 “（<em> 指针变量名 ）” 的两边的括号不可少，其中的 </em> 不应该理解为求值运算，在此处它只是一种表示符号。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">3：指针型函数</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">前面我们介绍过，所谓函数类型是指函数返回值的类型。 在C语言中允许一个函数的返回值是一个指针 （ 即地址 ） ，这种返回指针值的函数称为指针型函数。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">定义指针型函数的一般形式为：</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">类型说明符 * 函数名 （ 形参表 ）</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">{</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">…… /<em> 函数体 </em>/</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">}</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">其中函数名之前加了 “*” 号表明这是一个指针型函数，即返回值是一个指针。类型说明符表示了返回的指针值所指向的数据类型。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">如：</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">int *ap（int x,int y）</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">{</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">…… /<em> 函数体 </em>/</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">}</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">表示 ap 是一个返回指针值的指针型函数， 它返回的指针指向一个整型变量。下例中定义了一个指针型函数 day_name ，它的返回值指向一个字符串。该函数中定义了一个静态指针数组 name 。 name 数组初始化赋值为八个字符串，分别表示各个星期名及出错提示。形参 n 表示与星期名所对应的整数。在主函数中， 把输入的整数 i 作为实参， 在 printf 语句中调用 day_name 函数并把 i 值传送给形参 n 。 day_name 函数中的 return 语句包含一个条件表达式， n 值若大于 7 或小于 1 则把 name[0] 指针返回主函数输出出错提示字符串 “Illegal day” 。否则返回主函数输出对应的星期名。主函数中的第 7 行是个条件语句，其语义是，如输入为负数 （i&lt;0） 则中止程序运行退出程序。 exit 是一个库函数， exit（1） 表示发生错误后退出程序， exit（0） 表示正常退出。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">应该特别注意的是函数指针变量和指针型函数这两者在写法和意义上的区别。如 int（<em>p）（） 和 int </em>p（） 是两个完全不同的量。 int（<em>p）（） 是一个变量说明，说明 p 是一个指向函数入口的指针变量，该函数的返回值是整型量， （</em>p） 的两边的括号不能少。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">int <em>p（） 则不是变量说明而是函数说明，说明 p 是一个指针型函数，其返回值是一个指向整型量的指针，</em>p 两边没有括号。作为函数说明， 在括号内最好写入形式参数，这样便于与变量说明区别。 对于指针型函数定义，int *p（） 只是函数头部分，一般还应该有函数体部分。</span></p>
+<p><pre class="lang:c decode:true">main（）<br>{<br>int i;char <em>day_name（int n）；<br>printf（”input Day No:/n”）；<br>scanf（”%d”,&amp;i）；<br>if（i&lt;0） exit（1）；<br>printf（”Day No:%2d–&gt;%s/n”,i,day_name（i））；<br>}<br>char </em>day_name（int n）<br>{static char *name[]={ “Illegal day”,”Monday”,”Tuesday”,”Wednesday”,”Thursday”,”Friday”,”Saturday”,”Sunday”};<br>return（（n&lt;1||n&gt;7） ? name[0] : name[n]）；<br>}</pre><br>&nbsp;</p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">本程序是通过指针函数，输入一个 1 ～ 7 之间的整数， 输出对应的星期名。指针数组的说明与使用一个数组的元素值为指针则是指针数组。指针数组是一组有序的指针的集合。指针数组的所有元素都必须是具有相同存储类型和指向相同数据类型的指针变量。</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">指针数组说明的一般形式为： 类型说明符 * 数组名 [ 数组长度 ]</span></p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">其中类型说明符为指针值所指向的变量的类型。例如： int *pa[3] 表示 pa 是一个指针数组，它有三个数组元素， 每个元素值都是一个指针，指向整型变量。通常可用一个指针数组来指向一个二维数组。 指针数组中的每个元素被赋予二维数组每一行的首地址，因此也可理解为指向一个一维数组。图 6—6 表示了这种关系。</span></p>
+<p><pre class="lang:c decode:true ">int a[3][3]={1,2,3,4,5,6,7,8,9};<br>int <em>pa[3]={a[0],a[1],a[2]};<br>int </em>p=a[0];<br>main（）<br>{<br>int i;<br>for（i=0;i&lt;3;i++）printf（”%d,%d,%d/n”,a[i][2-i],<em>a[i],</em>（<em>（a+i）+i））；<br>for（i=0;i&lt;3;i++）printf（”%d,%d,%d/n”,</em>pa[i],p[i],*（p+i））；<br>}</pre><br>&nbsp;</p>
+<p><span style="font: 14px/24px undefined, sans-serif; color: #333333; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: pre-wrap; font-size-adjust: none; font-stretch: normal; background-color: #ffffff; -webkit-text-stroke-width: 0px;">本例程序中， pa 是一个指针数组，三个元素分别指向二维数组 a 的各行。然后用循环语句输出指定的数组元素。其中 <em>a[i] 表示 i 行 0 列元素值； </em>（<em>（a+i）+i） 表示 i 行 i 列的元素值； </em>pa[i] 表示 i 行 0 列元素值；由于 p 与 a[0] 相同，故 p[i] 表示 0 行 i 列的值； *（p+i） 表示 0 行 i 列的值。读者可仔细领会元素值的各种不同的表示方法。 应该注意指针数组和二维数组指针变量的区别。 这两者虽然都可用来表示二维数组，但是其表示方法和意义是不同的。</span></p>
+<p><a href="http://zhidao.baidu.com/link?url=ISTyTdvbqzMbSybrW3969M7WHcDHK6WQmlBndwmsrb3QI_AYr4RJXjDh114v7d4JgycLhP5-pnxSx4xnXrJVqq" target="_blank" rel="external">http://zhidao.baidu.com/link?url=ISTyTdvbqzMbSybrW3969M7WHcDHK6WQmlBndwmsrb3QI_AYr4RJXjDh114v7d4JgycLhP5-pnxSx4xnXrJVqq</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.xlife.link/2014/08/19/C语言中函数指针用法/" data-id="cjgaps5yi0003bgnuz0trnnxm" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数指针/">函数指针</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/06/19/C语言关于double类型的输入输出格式 /" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          C语言关于double类型的输入、输出格式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/08/51单片机IO口输出类型摘要/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">51单片机IO口输出类型摘要</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/">C语言学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/扯淡/">扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/未分类/">未分类</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo教程/">hexo教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/上位机/">上位机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/">图像处理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/扯淡/">扯淡</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/小小荣耀6/">小小荣耀6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo教程/">hexo教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数指针/">函数指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编/">汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡扯淡/">胡扯淡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟鼠标/">虚拟鼠标</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Emgucv/" style="font-size: 20px;">Emgucv</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/函数指针/" style="font-size: 10px;">函数指针</a> <a href="/tags/图像处理/" style="font-size: 15px;">图像处理</a> <a href="/tags/汇编/" style="font-size: 10px;">汇编</a> <a href="/tags/胡扯淡/" style="font-size: 10px;">胡扯淡</a> <a href="/tags/虚拟鼠标/" style="font-size: 10px;">虚拟鼠标</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/22/如何用hexo新建文章？/">如何用hexo新建文章？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/16/yuv序列分割成奇偶序列后编码传输/">对yuv视频奇偶列实现低损分割</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/18/C语言Hack实践/">C语言Hack实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/">Ubuntu terminal window always 80x1, can&#39;t resize</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 李鑫<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

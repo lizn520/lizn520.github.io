@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>查了下枚举类型，摘过来 | 不止于生活。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在程序中，可能需要为某些整数定义一个别名，我们可以利用预处理指令#define来完成这项工作，您的代码可能是： #define MON  1 #define TUE   2 #define WED  3 #define THU   4 #define FRI    5 #define SAT   6 #define SUN   7">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查了下枚举类型，摘过来">
+<meta property="og:url" content="http://www.xlife.link/2015/01/19/查了下枚举类型，摘过来/index.html">
+<meta property="og:site_name" content="不止于生活。">
+<meta property="og:description" content="在程序中，可能需要为某些整数定义一个别名，我们可以利用预处理指令#define来完成这项工作，您的代码可能是： #define MON  1 #define TUE   2 #define WED  3 #define THU   4 #define FRI    5 #define SAT   6 #define SUN   7">
+<meta property="og:updated_time" content="2018-04-22T10:19:41.938Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="查了下枚举类型，摘过来">
+<meta name="twitter:description" content="在程序中，可能需要为某些整数定义一个别名，我们可以利用预处理指令#define来完成这项工作，您的代码可能是： #define MON  1 #define TUE   2 #define WED  3 #define THU   4 #define FRI    5 #define SAT   6 #define SUN   7">
+  
+    <link rel="alternate" href="/atom.xml" title="不止于生活。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不止于生活。</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.xlife.link"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-查了下枚举类型，摘过来" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/19/查了下枚举类型，摘过来/" class="article-date">
+  <time datetime="2015-01-19T14:34:53.000Z" itemprop="datePublished">2015-01-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言学习/">C语言学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      查了下枚举类型，摘过来
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在程序中，可能需要为某些整数定义一个别名，我们可以利用预处理指令<span lang="EN-US" xml:lang="EN-US">#define</span>来完成这项工作，您的代码可能是：</p>
+<p><span lang="EN-US" xml:lang="EN-US">#define <wbr>MON <wbr> <wbr>1</span></p>
+<p>#define <wbr>TUE <wbr> <wbr> 2</p>
+<p>#define <wbr>WED <wbr> <wbr>3</p>
+<p>#define <wbr>THU <wbr> <wbr> 4</p>
+<p>#define <wbr>FRI <wbr> <wbr> <wbr> 5</p>
+<p>#define <wbr>SAT <wbr> <wbr> 6</p>
+<p>#define <wbr>SUN <wbr> <wbr> 7</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span><a id="more"></a></p>
+<p>在此，我们定义一种新的数据类型，希望它能完成同样的工作。这种新的数据类型叫枚举型。</p>
+<p><span lang="EN-US" xml:lang="EN-US">1.</span> 定义一种新的数据类型 <span lang="EN-US" xml:lang="EN-US">-</span> 枚举型</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span>以下代码定义了这种新的数据类型 <span lang="EN-US" xml:lang="EN-US">-</span> 枚举型</p>
+<p><span lang="EN-US" xml:lang="EN-US">enum <wbr>DAY<br>{<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr>MON=1, <wbr>TUE, <wbr>WED, <wbr>THU, <wbr>FRI, <wbr>SAT, <wbr>SUN<br>};</span></p>
+<p><span lang="EN-US" xml:lang="EN-US">(1)</span> 枚举型是一个集合，集合中的元素<span lang="EN-US" xml:lang="EN-US">(</span>枚举成员<span lang="EN-US" xml:lang="EN-US">)</span>是一些命名的整型常量，元素之间用逗号<span lang="EN-US" xml:lang="EN-US">,</span>隔开。</p>
+<p><span lang="EN-US" xml:lang="EN-US">(2) <wbr>DAY</span>是一个标识符，可以看成这个集合的名字，是一个可选项，即是可有可无的项。</p>
+<p><span lang="EN-US" xml:lang="EN-US">(3)</span> 第一个枚举成员的默认值为整型的<span lang="EN-US" xml:lang="EN-US">0</span>，后续枚举成员的值在前一个成员上加<span lang="EN-US" xml:lang="EN-US">1</span>。</p>
+<p><span lang="EN-US" xml:lang="EN-US">(4)</span> 可以人为设定枚举成员的值，从而自定义某个范围内的整数。</p>
+<p><span lang="EN-US" xml:lang="EN-US">(5)</span> 枚举型是预处理指令<span lang="EN-US" xml:lang="EN-US">#define</span>的替代。</p>
+<p><span lang="EN-US" xml:lang="EN-US">(6)</span> 类型定义以分号<span lang="EN-US" xml:lang="EN-US">;</span>结束。</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US">2.</span> 使用枚举类型对变量进行声明</p>
+<p>新的数据类型定义完成后，它就可以使用了。我们已经见过最基本的数据类型，如：整型<span lang="EN-US" xml:lang="EN-US">int,</span> 单精度浮点型<span lang="EN-US" xml:lang="EN-US">float,</span> 双精度浮点型<span lang="EN-US" xml:lang="EN-US">double,</span> 字符型<span lang="EN-US" xml:lang="EN-US">char,</span> 短整型<span lang="EN-US" xml:lang="EN-US">short</span>等等。用这些基本数据类型声明变量通常是这样：</p>
+<p><span lang="EN-US" xml:lang="EN-US">char <wbr> <wbr> <wbr> <wbr> a; <wbr>//</span>变量<span lang="EN-US" xml:lang="EN-US">a</span>的类型均为字符型<span lang="EN-US" xml:lang="EN-US">char<br>char <wbr> <wbr> <wbr> <wbr> letter;<br>int <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> x,<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> y,<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> z; <wbr>//</span>变量<span lang="EN-US" xml:lang="EN-US">x,y</span>和<span lang="EN-US" xml:lang="EN-US">z</span>的类型均为整型<span lang="EN-US" xml:lang="EN-US">int<br>int <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> number;<br>double <wbr> m, <wbr>n;<br>double <wbr> result; <wbr>//</span>变量<span lang="EN-US" xml:lang="EN-US">result</span>的类型为双精度浮点型<span lang="EN-US" xml:lang="EN-US">double</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>既然枚举也是一种数据类型，那么它和基本数据类型一样也可以对变量进行声明。</p>
+<p>方法一：枚举类型的定义和变量的声明分开</p>
+<p><span lang="EN-US" xml:lang="EN-US">enum <wbr>DAY<br>{<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr>MON=1, <wbr>TUE, <wbr>WED, <wbr>THU, <wbr>FRI, <wbr>SAT, <wbr>SUN<br>};</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US">enum <wbr>DAY <wbr>yesterday;<br>enum <wbr>DAY <wbr>today;<br>enum <wbr>DAY <wbr>tomorrow; <wbr>//</span>变量<span lang="EN-US" xml:lang="EN-US">tomorrow</span>的类型为枚举型<span lang="EN-US" xml:lang="EN-US">enum <wbr>DAY<br>enum <wbr>DAY <wbr>good_day, <wbr>bad_day; <wbr>//</span>变量<span lang="EN-US" xml:lang="EN-US">good_day</span>和<span lang="EN-US" xml:lang="EN-US">bad_day</span>的类型均为枚举型<span lang="EN-US" xml:lang="EN-US">enum <wbr>DAY</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>方法二：类型定义与变量声明同时进行：</p>
+<p><span lang="EN-US" xml:lang="EN-US">enum <wbr>//</span>跟第一个定义不同的是，此处的标号<span lang="EN-US" xml:lang="EN-US">DAY</span>省略，这是允许的。<span lang="EN-US" xml:lang="EN-US"><br>{<br><wbr> <wbr> <wbr> <wbr>saturday,<br><wbr> <wbr> <wbr> <wbr>sunday <wbr>= <wbr>0,<br><wbr> <wbr> <wbr> <wbr>monday,<br><wbr> <wbr> <wbr> <wbr>tuesday,<br><wbr> <wbr> <wbr> <wbr>wednesday,<br><wbr> <wbr> <wbr> <wbr>thursday,<br><wbr> <wbr> <wbr> <wbr>friday<br>} <wbr>workday; <wbr>//</span>变量<span lang="EN-US" xml:lang="EN-US">workday</span>的类型为枚举型<span lang="EN-US" xml:lang="EN-US">enum <wbr>DAY</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US">enum <wbr>week <wbr>{ <wbr>Mon=1, <wbr>Tue, <wbr>Wed, <wbr>Thu, <wbr>Fri <wbr>Sat, <wbr>Sun} <wbr>days; <wbr>//</span>变量<span lang="EN-US" xml:lang="EN-US">days</span>的类型为枚举型<span lang="EN-US" xml:lang="EN-US">enum <wbr>week</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US">enum <wbr>BOOLEAN <wbr>{ <wbr>false, <wbr>true <wbr>} <wbr>end_flag, <wbr>match_flag; <wbr>//</span>定义枚举类型并声明了两个枚举型变量</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>方法三：用<span lang="EN-US" xml:lang="EN-US">typedef</span>关键字将枚举类型定义成别名，并利用该别名进行变量声明：</p>
+<p><span lang="EN-US" xml:lang="EN-US">typedef <wbr>enum <wbr>workday<br>{<br><wbr> <wbr> <wbr> <wbr>saturday,<br><wbr> <wbr> <wbr> <wbr>sunday <wbr>= <wbr>0,<br><wbr> <wbr> <wbr> <wbr>monday,<br><wbr> <wbr> <wbr> <wbr>tuesday,<br><wbr> <wbr> <wbr> <wbr>wednesday,<br><wbr> <wbr> <wbr> <wbr>thursday,<br><wbr> <wbr> <wbr> <wbr>friday<br>} <wbr>workday; <wbr>//</span>此处的<span lang="EN-US" xml:lang="EN-US">workday</span>为枚举型<span lang="EN-US" xml:lang="EN-US">enum <wbr>workday</span>的别名</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US">workday <wbr>today, <wbr>tomorrow; <wbr>//</span>变量<span lang="EN-US" xml:lang="EN-US">today</span>和<span lang="EN-US" xml:lang="EN-US">tomorrow</span>的类型为枚举型<span lang="EN-US" xml:lang="EN-US">workday</span>，即<span lang="EN-US" xml:lang="EN-US">enum <wbr>workday</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>也可以：</p>
+<p><span lang="EN-US" xml:lang="EN-US">typedef <wbr>enum<br>{<br><wbr> <wbr> <wbr> <wbr>saturday,<br><wbr> <wbr> <wbr> <wbr>sunday <wbr>= <wbr>0,<br><wbr> <wbr> <wbr> <wbr>monday,<br><wbr> <wbr> <wbr> <wbr>tuesday,<br><wbr> <wbr> <wbr> <wbr>wednesday,<br><wbr> <wbr> <wbr> <wbr>thursday,<br><wbr> <wbr> <wbr> <wbr>friday<br>} <wbr>workday; <wbr>//</span>此处的<span lang="EN-US" xml:lang="EN-US">workday</span>为枚举型<span lang="EN-US" xml:lang="EN-US">enum <wbr>workday</span>的别名</p>
+<p>workday <wbr>today, <wbr>tomorrow; <wbr>//变量<span lang="EN-US" xml:lang="EN-US">today</span>和<span lang="EN-US" xml:lang="EN-US">tomorrow</span>的类型为枚举型<span lang="EN-US" xml:lang="EN-US">workday</span>，即<span lang="EN-US" xml:lang="EN-US">enum <wbr>workday</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>也可以用这种方式：</p>
+<p><span lang="EN-US" xml:lang="EN-US">typedef <wbr>enum <wbr>workday<br>{<br><wbr> <wbr> <wbr> <wbr>saturday,<br><wbr> <wbr> <wbr> <wbr>sunday <wbr>= <wbr>0,<br><wbr> <wbr> <wbr> <wbr>monday,<br><wbr> <wbr> <wbr> <wbr>tuesday,<br><wbr> <wbr> <wbr> <wbr>wednesday,<br><wbr> <wbr> <wbr> <wbr>thursday,<br><wbr> <wbr> <wbr> <wbr>friday<br>};</span></p>
+<p>workday <wbr>today, <wbr>tomorrow; <wbr>//变量<span lang="EN-US" xml:lang="EN-US">today</span>和<span lang="EN-US" xml:lang="EN-US">tomorrow</span>的类型为枚举型<span lang="EN-US" xml:lang="EN-US">workday</span>，即<span lang="EN-US" xml:lang="EN-US">enum <wbr>workday</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>注意：同一个程序中不能定义同名的枚举类型，不同的枚举类型中也不能存在同名的命名常量。错误示例如下所示：</p>
+<p>错误声明一：存在同名的枚举类型</p>
+<p><span lang="EN-US" xml:lang="EN-US">typedef <wbr>enum<br>{<br><wbr> <wbr> <wbr> <wbr>wednesday,<br><wbr> <wbr> <wbr> <wbr>thursday,<br><wbr> <wbr> <wbr> <wbr>friday<br>} <wbr>workday;</span></p>
+<p>typedef <wbr>enum <wbr>WEEK<br>{<br><wbr> <wbr> <wbr> <wbr>saturday,<br><wbr> <wbr> <wbr> <wbr>sunday <wbr>= <wbr>0,<br><wbr> <wbr> <wbr> <wbr>monday,<br>} <wbr>workday;</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>错误声明二：存在同名的枚举成员</p>
+<p><span lang="EN-US" xml:lang="EN-US">typedef <wbr>enum<br>{<br><wbr> <wbr> <wbr> <wbr>wednesday,<br><wbr> <wbr> <wbr> <wbr>thursday,<br><wbr> <wbr> <wbr> <wbr>friday<br>} <wbr>workday_1;</span></p>
+<p>typedef <wbr>enum <wbr>WEEK<br>{<br><wbr> <wbr> <wbr> <wbr>wednesday,<br><wbr> <wbr> <wbr> <wbr>sunday <wbr>= <wbr>0,<br><wbr> <wbr> <wbr> <wbr>monday,<br>} <wbr>workday_2;</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US">3.</span> 使用枚举类型的变量</p>
+<p><span lang="EN-US" xml:lang="EN-US">3.1</span> 对枚举型的变量赋值。</p>
+<p>实例将枚举类型的赋值与基本数据类型的赋值进行了对比：</p>
+<p>方法一：先声明变量，再对变量赋值</p>
+<p><span lang="EN-US" xml:lang="EN-US">#include&lt;&lt;/SPAN&gt;stdio.h&gt;</span></p>
+<p>enum <wbr>DAY <wbr>{ <wbr>MON=1, <wbr>TUE, <wbr>WED, <wbr>THU, <wbr>FRI, <wbr>SAT, <wbr>SUN <wbr>};</p>
+<p>void <wbr>main()<br>{<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>int <wbr>x, <wbr>y, <wbr>z;<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>x <wbr>= <wbr>10;<br><wbr> <wbr> <wbr> <wbr>y <wbr>= <wbr>20;<br><wbr> <wbr> <wbr> <wbr>z <wbr>= <wbr>30;<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>enum <wbr>DAY <wbr>yesterday, <wbr>today, <wbr>tomorrow;<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>yesterday <wbr>= <wbr>MON;<br><wbr> <wbr> <wbr> <wbr>today <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>TUE;<br><wbr> <wbr> <wbr> <wbr>tomorrow <wbr> <wbr>= <wbr>WED;</p>
+<p><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>%d <wbr>%d <wbr>\n”, <wbr>yesterday, <wbr>today, <wbr>tomorrow);<br>}</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>方法二：声明变量的同时赋初值</p>
+<p><span lang="EN-US" xml:lang="EN-US">#include <wbr>&lt;&lt;/SPAN&gt;stdio.h&gt;</span></p>
+<p>enum <wbr>DAY <wbr>{ <wbr>MON=1, <wbr>TUE, <wbr>WED, <wbr>THU, <wbr>FRI, <wbr>SAT, <wbr>SUN <wbr>};</p>
+<p>void <wbr>main()<br>{<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>int <wbr>x=10, <wbr>y=20, <wbr>z=30;</p>
+<p><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>enum <wbr>DAY <wbr>yesterday <wbr>= <wbr>MON, <wbr><br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>  <wbr>today <wbr>= <wbr>TUE,<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> tomorrow <wbr>= <wbr>WED;</p>
+<p><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>%d <wbr>%d <wbr>\n”, <wbr>yesterday, <wbr>today, <wbr>tomorrow);<br>}</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>方法三：定义类型的同时声明变量，然后对变量赋值。</p>
+<p><span lang="EN-US" xml:lang="EN-US">#include <wbr>&lt;&lt;/SPAN&gt;stdio.h&gt;</span></p>
+<p>enum <wbr>DAY <wbr>{ <wbr>MON=1, <wbr>TUE, <wbr>WED, <wbr>THU, <wbr>FRI, <wbr>SAT, <wbr>SUN <wbr>} <wbr>yesterday, <wbr>today, <wbr>tomorrow;</p>
+<p>int <wbr>x, <wbr>y, <wbr>z;</p>
+<p>void <wbr>main()<br>{<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>x <wbr>= <wbr>10; <wbr> <wbr>y <wbr>= <wbr>20; <wbr> <wbr>z <wbr>= <wbr>30;<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>yesterday <wbr>= <wbr>MON;<br><wbr> <wbr> <wbr> <wbr>today <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>TUE;<br><wbr> <wbr> <wbr> <wbr>tomorrow <wbr> <wbr>= <wbr>WED;</p>
+<p><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>%d <wbr>%d <wbr>\n”, <wbr>x, <wbr>y, <wbr>z); <wbr>//输出：<span lang="EN-US" xml:lang="EN-US">10 <wbr>20 <wbr>30<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>%d <wbr>%d <wbr>\n”, <wbr>yesterday, <wbr>today, <wbr>tomorrow); <wbr>//</span>输出：<span lang="EN-US" xml:lang="EN-US">1 <wbr>2 <wbr>3<br>}</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>方法四：类型定义，变量声明，赋初值同时进行。</p>
+<p><span lang="EN-US" xml:lang="EN-US">#include <wbr>&lt;&lt;/SPAN&gt;stdio.h&gt;</span></p>
+<p>enum <wbr>DAY<br>{<br><wbr> <wbr> <wbr> <wbr>MON=1, <wbr><br><wbr> <wbr> <wbr> <wbr>TUE,<br><wbr> <wbr> <wbr> <wbr>WED,<br><wbr> <wbr> <wbr> <wbr>THU,<br><wbr> <wbr> <wbr> <wbr>FRI,<br><wbr> <wbr> <wbr> <wbr>SAT,<br><wbr> <wbr> <wbr> <wbr>SUN <wbr><br>}<br>yesterday <wbr>= <wbr>MON, <wbr>today <wbr>= <wbr>TUE, <wbr>tomorrow <wbr>= <wbr>WED;</p>
+<p>int <wbr>x <wbr>= <wbr>10, <wbr>y <wbr>= <wbr>20, <wbr>z <wbr>= <wbr>30;</p>
+<p>void <wbr>main()<br>{<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>%d <wbr>%d <wbr>\n”, <wbr>x, <wbr>y, <wbr>z); <wbr>//输出：<span lang="EN-US" xml:lang="EN-US">10 <wbr>20 <wbr>30<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>%d <wbr>%d <wbr>\n”, <wbr>yesterday, <wbr>today, <wbr>tomorrow); <wbr>//</span>输出：<span lang="EN-US" xml:lang="EN-US">1 <wbr>2 <wbr>3<br>}</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US">3.2</span> 对枚举型的变量赋整数值时，需要进行类型转换。</p>
+<p><span lang="EN-US" xml:lang="EN-US">#include <wbr>&lt;&lt;/SPAN&gt;stdio.h&gt;</span></p>
+<p>enum <wbr>DAY <wbr>{ <wbr>MON=1, <wbr>TUE, <wbr>WED, <wbr>THU, <wbr>FRI, <wbr>SAT, <wbr>SUN <wbr>};</p>
+<p>void <wbr>main()<br>{<br><wbr> <wbr> <wbr> <wbr>enum <wbr>DAY <wbr>yesterday, <wbr>today, <wbr>tomorrow;</p>
+<p><wbr> <wbr> <wbr> <wbr>yesterday <wbr>= <wbr>TUE;<br><wbr> <wbr> <wbr> <wbr>today <wbr>= <wbr>(enum <wbr>DAY) <wbr>(yesterday <wbr>+ <wbr>1); <wbr>//类型转换<span lang="EN-US" xml:lang="EN-US"><br><wbr> <wbr> <wbr> <wbr>tomorrow <wbr>= <wbr>(enum <wbr>DAY) <wbr>30; <wbr>//</span>类型转换<span lang="EN-US" xml:lang="EN-US"><br><wbr> <wbr> <wbr> <wbr>//tomorrow <wbr>= <wbr>3; <wbr>//</span>错误</p>
+<p><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>%d <wbr>%d <wbr>\n”, <wbr>yesterday, <wbr>today, <wbr>tomorrow); <wbr>//输出：<span lang="EN-US" xml:lang="EN-US">2 <wbr>3 <wbr>30<br>}</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US">3.3</span> 使用枚举型变量</p>
+<p><span lang="EN-US" xml:lang="EN-US">#include&lt;&lt;/SPAN&gt;stdio.h&gt;</span></p>
+<p>enum<br>{ <wbr><br><wbr> <wbr> <wbr> <wbr>BELL <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>‘\a’,<br><wbr> <wbr> <wbr> <wbr>BACKSPACE <wbr>= <wbr>‘\b’,<br><wbr> <wbr> <wbr> <wbr>HTAB <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>‘\t’,<br><wbr> <wbr> <wbr> <wbr>RETURN <wbr> <wbr> <wbr> <wbr>  <wbr>= <wbr>‘\r’,<br><wbr> <wbr> <wbr> <wbr>NEWLINE <wbr> <wbr> <wbr> <wbr>= <wbr>‘\n’, <wbr><br><wbr> <wbr> <wbr> <wbr>VTAB <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>‘\v’,<br><wbr> <wbr> <wbr> <wbr>SPACE <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>‘ <wbr>‘<br>};</p>
+<p>enum <wbr>BOOLEAN <wbr>{ <wbr>FALSE <wbr>= <wbr>0, <wbr>TRUE <wbr>} <wbr>match_flag;</p>
+<p>void <wbr>main()<br>{<br><wbr> <wbr> <wbr> <wbr>int <wbr>index <wbr>= <wbr>0;<br><wbr> <wbr> <wbr> <wbr>int <wbr>count_of_letter <wbr>= <wbr>0;<br><wbr> <wbr> <wbr> <wbr>int <wbr>count_of_space <wbr>= <wbr>0;</p>
+<p><wbr> <wbr> <wbr> <wbr>char <wbr>str[] <wbr>= <wbr>“I’m <wbr>Ely <wbr>efod”;</p>
+<p><wbr> <wbr> <wbr> <wbr>match_flag <wbr>= <wbr>FALSE;</p>
+<p><wbr> <wbr> <wbr> <wbr>for(; <wbr>str[index] <wbr>!= <wbr>‘\0’; <wbr>index++)<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>if( <wbr>SPACE <wbr>!= <wbr>str[index] <wbr>)<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>count_of_letter++;<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>else<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>{<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>match_flag <wbr>= <wbr>(enum <wbr>BOOLEAN) <wbr>1;<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>count_of_space++;<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>}<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>printf(“%s <wbr>%d <wbr>times <wbr>%c”, <wbr>match_flag <wbr>? <wbr>“match” <wbr>: <wbr>“not <wbr>match”, <wbr>count_of_space, <wbr>NEWLINE);<br><wbr> <wbr> <wbr> <wbr>printf(“count <wbr>of <wbr>letters: <wbr>%d <wbr>%c%c”, <wbr>count_of_letter, <wbr>NEWLINE, <wbr>RETURN);<br>}</p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p>输出：<span lang="EN-US" xml:lang="EN-US"><br>match 2 times<br>count of letters: 10<br>Press any key to continue</span></p>
+<p><span lang="EN-US" xml:lang="EN-US"> <wbr></span></p>
+<p><span lang="EN-US" xml:lang="EN-US">4. <wbr></span>枚举类型与<span lang="EN-US" xml:lang="EN-US">sizeof</span>运算符</p>
+<p><span lang="EN-US" xml:lang="EN-US">#include&lt;&lt;/SPAN&gt;stdio.h&gt;</span></p>
+<p>enum <wbr>escapes<br>{ <wbr><br><wbr> <wbr> <wbr> <wbr>BELL <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>‘\a’,<br><wbr> <wbr> <wbr> <wbr>BACKSPACE <wbr>= <wbr>‘\b’,<br><wbr> <wbr> <wbr> <wbr>HTAB <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>‘\t’,<br><wbr> <wbr> <wbr> <wbr>RETURN <wbr> <wbr> <wbr> <wbr>= <wbr>‘\r’,<br><wbr> <wbr> <wbr> <wbr>NEWLINE <wbr> <wbr> <wbr>= <wbr>‘\n’, <wbr><br><wbr> <wbr> <wbr> <wbr>VTAB <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>‘\v’,<br><wbr> <wbr> <wbr> <wbr>SPACE <wbr> <wbr> <wbr> <wbr> <wbr>= <wbr>‘ <wbr>‘<br>};</p>
+<p>enum <wbr>BOOLEAN <wbr>{ <wbr>FALSE <wbr>= <wbr>0, <wbr>TRUE <wbr>} <wbr>match_flag;</p>
+<p>void <wbr>main()<br>{<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes <wbr>\n”, <wbr>sizeof(enum <wbr>escapes)); <wbr>//4 <wbr>bytes<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes <wbr>\n”, <wbr>sizeof(escapes)); <wbr>//4 <wbr>bytes</p>
+<p><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes <wbr>\n”, <wbr>sizeof(enum <wbr>BOOLEAN)); <wbr>//4 <wbr>bytes<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes <wbr>\n”, <wbr>sizeof(BOOLEAN)); <wbr>//4 <wbr>bytes<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes <wbr>\n”, <wbr>sizeof(match_flag)); <wbr>//4 <wbr>bytes</p>
+<p><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes <wbr>\n”, <wbr>sizeof(SPACE)); <wbr>//4 <wbr>bytes<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes <wbr>\n”, <wbr>sizeof(NEWLINE)); <wbr>//4 <wbr>bytes<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes <wbr>\n”, <wbr>sizeof(FALSE)); <wbr>//4 <wbr>bytes<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes <wbr>\n”, <wbr>sizeof(0)); <wbr>//4 <wbr>bytes<br>}</p>
+<p><span lang="EN-US" xml:lang="EN-US">5. <wbr></span>综合举例</p>
+<p><span lang="EN-US" xml:lang="EN-US">#include&lt;&lt;/SPAN&gt;stdio.h&gt;</span></p>
+<p>enum <wbr>Season  <wbr>  <wbr>  <wbr>  <wbr>  <wbr>  <wbr>  <wbr>//注意这里如果放在下面，后面就不能直接那样声明<span lang="EN-US" xml:lang="EN-US"><br>{<br><wbr> <wbr> <wbr> <wbr>spring, <wbr>summer=100, <wbr>fall=96, <wbr>winter<br>};</span></p>
+<p>typedef <wbr>enum<br>{<br><wbr> <wbr> <wbr> <wbr>Monday, <wbr>Tuesday, <wbr>Wednesday, <wbr>Thursday, <wbr>Friday, <wbr>Saturday, <wbr>Sunday<br>}<br>Weekday;</p>
+<p>void <wbr>main()<br>{<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>\n”, <wbr>spring); <wbr>// <wbr>0<br><wbr> <wbr> <wbr> <wbr>printf(“%d, <wbr>%c <wbr>\n”, <wbr>summer, <wbr>summer); <wbr>// <wbr>100, <wbr>d<br><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>\n”, <wbr>fall+winter); <wbr>// <wbr>193</p>
+<p><wbr> <wbr> <wbr> <wbr>Season <wbr>mySeason=winter;  <wbr>  <wbr>  <wbr>  <wbr>  <wbr>  <wbr>  <wbr>  <wbr>//就是这里，看上面的定义，也可以 <span lang="EN-US" xml:lang="EN-US">enum Season mySeason<br><wbr> <wbr> <wbr> <wbr>if(winter==mySeason)<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>printf(“mySeason <wbr>is <wbr>winter <wbr>\n”); <wbr>// <wbr>mySeason <wbr>is <wbr>winter<br><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>int <wbr>x=100;<br><wbr> <wbr> <wbr> <wbr>if(x==summer)<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>printf(“x <wbr>is <wbr>equal <wbr>to <wbr>summer\n”); <wbr>// <wbr>x <wbr>is <wbr>equal <wbr>to <wbr>summer</span></p>
+<p><wbr> <wbr> <wbr> <wbr>printf(“%d <wbr>bytes\n”, <wbr>sizeof(spring)); <wbr>// <wbr>4 <wbr>bytes</p>
+<p><wbr> <wbr> <wbr> <wbr><br><wbr> <wbr> <wbr> <wbr>printf(“sizeof <wbr>Weekday <wbr>is: <wbr>%d <wbr>\n”, <wbr>sizeof(Weekday)); <wbr>//sizeof <wbr>Weekday <wbr>is: <wbr>4</p>
+<p><wbr> <wbr> <wbr> <wbr>Weekday <wbr>today <wbr>= <wbr>Saturday;<br><wbr> <wbr> <wbr> <wbr>Weekday <wbr>tomorrow;<br><wbr> <wbr> <wbr> <wbr>if(today <wbr>== <wbr>Monday)<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>tomorrow <wbr>= <wbr>Tuesday;<br><wbr> <wbr> <wbr> <wbr>else<br><wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>tomorrow <wbr>= <wbr>(Weekday) <wbr>(today <wbr>+ <wbr>1); <wbr>//remember <wbr>to <wbr>convert <wbr>from <wbr>int <wbr>to <wbr>Weekday<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.xlife.link/2015/01/19/查了下枚举类型，摘过来/" data-id="cjgaps60j001abgnuduvzq4dl" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/19/线性稳压器的基本知识摘要/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          线性稳压器的基本知识摘要
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/04/【转】 卡尔曼滤波的原理说明/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">【转】 卡尔曼滤波的原理说明</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/">C语言学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/扯淡/">扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/未分类/">未分类</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo教程/">hexo教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/上位机/">上位机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/">图像处理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/扯淡/">扯淡</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/小小荣耀6/">小小荣耀6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo教程/">hexo教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数指针/">函数指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编/">汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡扯淡/">胡扯淡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟鼠标/">虚拟鼠标</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Emgucv/" style="font-size: 20px;">Emgucv</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/函数指针/" style="font-size: 10px;">函数指针</a> <a href="/tags/图像处理/" style="font-size: 15px;">图像处理</a> <a href="/tags/汇编/" style="font-size: 10px;">汇编</a> <a href="/tags/胡扯淡/" style="font-size: 10px;">胡扯淡</a> <a href="/tags/虚拟鼠标/" style="font-size: 10px;">虚拟鼠标</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/22/如何用hexo新建文章？/">如何用hexo新建文章？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/16/yuv序列分割成奇偶序列后编码传输/">对yuv视频奇偶列实现低损分割</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/18/C语言Hack实践/">C语言Hack实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/">Ubuntu terminal window always 80x1, can&#39;t resize</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 李鑫<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

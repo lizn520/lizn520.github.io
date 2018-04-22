@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hello World in CSharp for Emgu CV ！ | 不止于生活。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="初次学习 Emgu CV  ，在官网找了个例程，捣鼓一下午终于调出来了12345678910111213141516171819202122232425using System;using Emgu.CV;using Emgu.CV.CvEnum;using Emgu.CV.Structure;...String win1 = &quot;Test Window&quot;; //The name of the wi">
+<meta name="keywords" content="Emgucv,图像处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello World in CSharp for Emgu CV ！">
+<meta property="og:url" content="http://www.xlife.link/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/index.html">
+<meta property="og:site_name" content="不止于生活。">
+<meta property="og:description" content="初次学习 Emgu CV  ，在官网找了个例程，捣鼓一下午终于调出来了12345678910111213141516171819202122232425using System;using Emgu.CV;using Emgu.CV.CvEnum;using Emgu.CV.Structure;...String win1 = &quot;Test Window&quot;; //The name of the wi">
+<meta property="og:updated_time" content="2018-04-22T10:51:00.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hello World in CSharp for Emgu CV ！">
+<meta name="twitter:description" content="初次学习 Emgu CV  ，在官网找了个例程，捣鼓一下午终于调出来了12345678910111213141516171819202122232425using System;using Emgu.CV;using Emgu.CV.CvEnum;using Emgu.CV.Structure;...String win1 = &quot;Test Window&quot;; //The name of the wi">
+  
+    <link rel="alternate" href="/atom.xml" title="不止于生活。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不止于生活。</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.xlife.link"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hello-world-in-csharp-for-emgu-cv-ef-bc-81" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/" class="article-date">
+  <time datetime="2015-09-06T11:59:43.000Z" itemprop="datePublished">2015-09-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/图像处理/">图像处理</a>►<a class="article-category-link" href="/categories/图像处理/扯淡/">扯淡</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hello World in CSharp for Emgu CV ！
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>初次学习 Emgu CV  ，在官网找了个例程，捣鼓一下午终于调出来了<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> Emgu.CV;</div><div class="line"><span class="keyword">using</span> Emgu.CV.CvEnum;</div><div class="line"><span class="keyword">using</span> Emgu.CV.Structure;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">String win1 = <span class="string">"Test Window"</span>; <span class="comment">//The name of the window</span></div><div class="line">CvInvoke.NamedWindow(win1); <span class="comment">//Create the window using the specific name</span></div><div class="line"></div><div class="line">Mat img = <span class="keyword">new</span> Mat(<span class="number">200</span>, <span class="number">400</span>, DepthType.Cv8U, <span class="number">3</span>); <span class="comment">//Create a 3 channel image of 400x200</span></div><div class="line">img.SetTo(<span class="keyword">new</span> Bgr(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>).MCvScalar); <span class="comment">// set it to Blue color</span></div><div class="line"></div><div class="line"><span class="comment">//Draw "Hello, world." on the image using the specific font</span></div><div class="line">CvInvoke.PutText(</div><div class="line">   img, </div><div class="line">   <span class="string">"Hello, world"</span>, </div><div class="line">   <span class="keyword">new</span> System.Drawing.Point(<span class="number">10</span>, <span class="number">80</span>), </div><div class="line">   FontFace.HersheyComplex, </div><div class="line">   <span class="number">1.0</span>, </div><div class="line">   <span class="keyword">new</span> Bgr(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>).MCvScalar);</div><div class="line"></div><div class="line">CvInvoke.Imshow(win1, img); <span class="comment">//Show the image</span></div><div class="line">CvInvoke.WaitKey(<span class="number">0</span>);  <span class="comment">//Wait for the key pressing event</span></div><div class="line">CvInvoke.DestroyWindow(win1); <span class="comment">//Destroy the window if key is pressed</span></div></pre></td></tr></table></figure></p>
+<p>官网的hello world程序如上。</p>
+<a id="more"></a>
+<p>You can run an <a href="http://www.zianchoy.com/emguCVInstaller/" target="_blank" rel="external">AutoIt script</a> that automates much of the process, including installing OpenCV if necessary, and lets you start developing with Visual Studio right away.</p>
+<p>&nbsp;</p>
+<h3 id="Creating-a-New-Project-in-Visual-Studio"><a href="#Creating-a-New-Project-in-Visual-Studio" class="headerlink" title="Creating a New Project in Visual Studio"></a><span id="Creating_a_New_Project_in_Visual_Studio" class="mw-headline">Creating a New Project in Visual Studio</span></h3><p>To use the framework in Visual Studio, you need to</p>
+<ul>
+<li>Download and extract the binary files package <strong>Emgu.CV.Windows.Binary-{version}.zip</strong><br>For a Full guide to using the dependencies under Visual Studio and C# see the <a href="http://www.emgu.com/wiki/index.php/Setting_up_EMGU_C_Sharp" title="Setting up EMGU C Sharp" target="_blank" rel="external">C# Tutorial</a>.</li>
+</ul>
+<h4 id="Core-Functionality"><a href="#Core-Functionality" class="headerlink" title="Core Functionality"></a><span id="Core_Functionality" class="mw-headline">Core Functionality</span></h4><h5 id="Managed-Code"><a href="#Managed-Code" class="headerlink" title="Managed Code"></a><span id="Managed_Code" class="mw-headline">Managed Code</span></h5><ul>
+<li>Create a new Visual Studio project or use an existing one</li>
+<li>Add the two files <code>Emgu.Utils.dll</code> and <code>Emgu.CV.dll</code> to <em>References</em> of the project. as well.</li>
+<li>Optionally put the following lines in the top of your code to include the Emgu.CV namespace.<pre>using Emgu.CV;
+using Emgu.CV.Structure;
+</pre>
+
+</li>
+</ul>
+<h5 id="Open-CV-unmanaged-dll"><a href="#Open-CV-unmanaged-dll" class="headerlink" title="Open CV unmanaged dll"></a><span id="Open_CV_unmanaged_dll" class="mw-headline">Open CV unmanaged dll</span></h5><h6 id="Universal-Package"><a href="#Universal-Package" class="headerlink" title="Universal Package"></a><span id="Universal_Package" class="mw-headline">Universal Package</span></h6><p>For the new universal packages (packages that contains the word “-universal” in the package name): Copy the “x86” and “x64” folder, along with the DLLs inside those folder to the folder of the executable. The universal package is able to load the unmanaged binary from the “x86” folder when running in 32bit mode, and load the unmanaged binary from the “x64” folder when running in 64bit-mode.</p>
+<h6 id="Architecture-Specific-Package"><a href="#Architecture-Specific-Package" class="headerlink" title="Architecture Specific Package"></a><span id="Architecture_Specific_Package" class="mw-headline">Architecture Specific Package</span></h6><p>For architecture specific package (packages that contains either the work “-x86” or “-x64” in the package name): Copy the <a href="http://www.emgu.com/wiki/index.php/OpenCV" title="OpenCV" target="_blank" rel="external">OpenCV</a> dll files:<code>opencv_calib3d{XXX}.dll</code>, <code>opencv_contrib{XXX}.dll</code>, <code>opencv_core{XXX}.dll</code>, <code>opencv_features2d{XXX}.dll</code>, <code>opencv_ffmpeg{XXX}.dll</code>, <code>opencv_flann{XXX}.dll</code>,<code>opencv_gpu{XXX}.dll</code>, <code>opencv_highgui{XXX}.dll</code>, <code>opencv_imgproc{XXX}.dll</code>, <code>opencv_legacy{XXX}.dll</code>, <code>opencv_ml{XXX}.dll</code>, <code>opencv_objdetect{XXX}.dll</code>,<code>opencv_video{XXX}.dll</code> and <code>cvextern.dll</code> to the execution directory, where <code>{XXX}</code> is the OpenCV version number.</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.xlife.link/2015/09/06/hello-world-in-csharp-for-emgu-cv-ef-bc-81/" data-id="cjgaps5yx000dbgnubdl8p3nc" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图像处理/">图像处理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/05/10/基于51单片机和LCD1206的电子钟/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          基于51单片机和LCD1206的电子钟
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/07/EmguCV轮廓检测/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">EmguCV轮廓检测终于成功了！泪流满面~</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/">C语言学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/扯淡/">扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/未分类/">未分类</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo教程/">hexo教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/上位机/">上位机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/">图像处理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/扯淡/">扯淡</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/小小荣耀6/">小小荣耀6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo教程/">hexo教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数指针/">函数指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编/">汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡扯淡/">胡扯淡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟鼠标/">虚拟鼠标</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Emgucv/" style="font-size: 20px;">Emgucv</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/函数指针/" style="font-size: 10px;">函数指针</a> <a href="/tags/图像处理/" style="font-size: 15px;">图像处理</a> <a href="/tags/汇编/" style="font-size: 10px;">汇编</a> <a href="/tags/胡扯淡/" style="font-size: 10px;">胡扯淡</a> <a href="/tags/虚拟鼠标/" style="font-size: 10px;">虚拟鼠标</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/22/如何用hexo新建文章？/">如何用hexo新建文章？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/16/yuv序列分割成奇偶序列后编码传输/">对yuv视频奇偶列实现低损分割</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/18/C语言Hack实践/">C语言Hack实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/">Ubuntu terminal window always 80x1, can&#39;t resize</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 李鑫<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

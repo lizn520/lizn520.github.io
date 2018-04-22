@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>牛人对STM32的NVIC_PriorityGroupConfig使用及优先级分组方式理解 | 不止于生活。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="STM32有43个channel的settable的中断源；AIRC(Application Interrupt and Reset Register)寄存器中有用于指定优先级的4 bits。这4个bits用于分配preemption优先级和sub优先级，在STM32的固件库中定义如下 / Preemption Priority Group ————————————————-/ #define">
+<meta name="keywords" content="stm32">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛人对STM32的NVIC_PriorityGroupConfig使用及优先级分组方式理解">
+<meta property="og:url" content="http://www.xlife.link/2015/12/06/牛人对STM32的NVIC_PriorityGroupConfig使用及优先级分组方式理解/index.html">
+<meta property="og:site_name" content="不止于生活。">
+<meta property="og:description" content="STM32有43个channel的settable的中断源；AIRC(Application Interrupt and Reset Register)寄存器中有用于指定优先级的4 bits。这4个bits用于分配preemption优先级和sub优先级，在STM32的固件库中定义如下 / Preemption Priority Group ————————————————-/ #define">
+<meta property="og:updated_time" content="2018-04-22T10:19:33.990Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="牛人对STM32的NVIC_PriorityGroupConfig使用及优先级分组方式理解">
+<meta name="twitter:description" content="STM32有43个channel的settable的中断源；AIRC(Application Interrupt and Reset Register)寄存器中有用于指定优先级的4 bits。这4个bits用于分配preemption优先级和sub优先级，在STM32的固件库中定义如下 / Preemption Priority Group ————————————————-/ #define">
+  
+    <link rel="alternate" href="/atom.xml" title="不止于生活。" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不止于生活。</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.xlife.link"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-牛人对STM32的NVIC_PriorityGroupConfig使用及优先级分组方式理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/06/牛人对STM32的NVIC_PriorityGroupConfig使用及优先级分组方式理解/" class="article-date">
+  <time datetime="2015-12-06T09:18:06.000Z" itemprop="datePublished">2015-12-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言学习/">C语言学习</a>►<a class="article-category-link" href="/categories/C语言学习/单片机学习/">单片机学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      牛人对STM32的NVIC_PriorityGroupConfig使用及优先级分组方式理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="Blog_wz1">
+
+<p>STM32有43个channel的settable的中断源；AIRC(Application Interrupt and Reset Register)寄存器中有用于指定优先级的4 bits。这4个bits用于分配preemption优先级和sub优先级，在STM32的固件库中定义如下</p>
+<p><pre class="lang:c decode:true ">/<em> Preemption Priority Group ————————————————-</em>/</pre></p>
+<p>#define NVIC_PriorityGroup_0          ((u32)0x700) /<em> 0 bits for pre-emption priority<br>                                                      4 bits for subpriority </em>/</p>
+<p>#define NVIC_PriorityGroup_1          ((u32)0x600) /<em> 1 bits for pre-emption priority<br>                                                      3 bits for subpriority </em>/</p>
+<p>#define NVIC_PriorityGroup_2          ((u32)0x500) /<em> 2 bits for pre-emption priority<br>                                                      2 bits for subpriority </em>/</p>
+<p>#define NVIC_PriorityGroup_3          ((u32)0x400) /<em> 3 bits for pre-emption priority<br>                                                      1 bits for subpriority </em>/</p>
+<p>#define NVIC_PriorityGroup_4          ((u32)0x300) /<em> 4 bits for pre-emption priority<br>                                                      0 bits for subpriority </em>/<br>&nbsp;</p>
+<p>形象化的理解是：<br><a id="more"></a></p>
+<p>&nbsp;</p>
+<p>你是上帝，<br>造了43个人，这么多人要分社会阶级和社会阶层了；<br>因为“阶级”的词性比较重；”阶层”比较中性,<br>所以preemption优先级-&gt;阶级；每个阶级内部，有一些阶层，sub优先级-&gt;阶层；</p>
+<p>如果按照NVIC_PriorityGroup_4这么分，就分为了16个阶级（1个阶层就是1个preemption优先级），0个阶层；高阶级的人，可以打断低阶级的正在做事的人（嵌套），最多可以完成1个中断和15级嵌套。<br>每个阶级（每个preemption优先级），你来指定这43人中，谁进入该阶级；一个人叫EXTI0_IRQChannel，你指定他进入“阶级8”，则</p>
+<p><pre class="lang:default decode:true ">NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQChannel;<br>NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 8; // 指定抢占式优先级别1，可取0-15</pre><br>&nbsp;</p>
+<p>另外，在同一阶级内部，一个人在做事的时候，另外一个人不能打断他；（preemption优先级别相同的中断源之间没有嵌套关系）<br>还有，如果他们两个同时想做事，因为没有阶层，那么就根据Vector table中的物理排序，让排名靠前的人去做；</p>
+<p>又有1个人SPI1_IRQChannel，设定如下</p>
+<p><pre class="lang:default decode:true ">NVIC_InitStructure.NVIC_IRQChannel = SPI1_IRQChannel;<br>NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; // 指定抢占式优先级别1，可取0-15</pre><br>&nbsp;</p>
+<p>SPI1_IRQChannel的阶级高，EXTI0_IRQChannel做事的时候可以打断（嵌套）。</p>
+<p>如果按照NVIC_PriorityGroup_3这么分，就分为了8个阶级（1个阶级是1个preemption优先级），每个阶级内有2个阶层（sub优先级）；高阶级的人，可以打断低阶级的正在做事的人（嵌套），最多可以完成1个中断和7级嵌套。</p>
+<p>每个阶级（每个preemption优先级），你来指定这43人中，谁进入该阶级；一个人叫EXTI0_IRQChannel，你指定他进入“阶级3”，则：</p>
+<p><pre class="lang:default decode:true ">NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQChannel;<br>NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3; // 指定抢占式优先级别1，可取0-7</pre><br>还需要指定他的阶层：</p>
+<p><pre class="lang:default decode:true ">NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0; // 指定响应优先级别0，可取0-1</pre><br>&nbsp;</p>
+<p>另有1个人叫EXTI9_5_IRQChannel，他的阶级和阶层设定如下</p>
+<p><pre class="lang:default decode:true ">NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQChannel;<br>NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3; // 指定抢占式优先级别0，可取0-7<br>NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; // 指定响应优先级别1</pre><br>&nbsp;</p>
+<p>那么这两个人是同一阶级的兄弟，一个人在做事的时候，另外一个人不能打断他；（preemption优先级别相同的中断源之间没有嵌套关系）<br>如果他们两个同时想做事，因为前者的阶层高，所以前者优先。</p>
+<p>还有一个人叫USART1_IRQChannel，他的阶级和阶层设定如下</p>
+<p><pre class="lang:default decode:true ">NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQChannel;<br>NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2; // 指定抢占式优先级别0，可取0-7<br>NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; // 指定响应优先级别1</pre><br>&nbsp;</p>
+<p>USART1_IRQChannel的优先级最高，当前面两个人做事的时候，他都可以打断（嵌套）。</p>
+<p>以下的类推。</p>
+<p>转自：<a href="http://bbs.ednchina.com/BLOG_ARTICLE_3000747.HTM" target="_blank" rel="external">http://bbs.ednchina.com/BLOG_ARTICLE_3000747.HTM</a><br>这两日被些许琐事所牵，身心俱累，本无心记录，但回想前几天的点滴收获，无录甚是可惜，于是身倚椅，旁敲键盘记之，唯慰藉自己及共享同道仁友。废言不再多，就此入题。</p>
+<p>NVIC，中文名嵌套中断向量控制器，是Cortex-M3系列控制器内部独有集成单元，与CPU结合紧密，降低中断延迟时间并且能更加高效处理后续中断。举个例子，比如火车站买票，那些火车站的规章制度就是NVIC，规定学生和军人有比一般人更高优先级，它们则给你单独安排个窗口，同学与同学之间也有区别，那就是你也得排队，也就是你的组别（抢断优先级）和你的排队序号（响应优先级）决定你何时能买到票。</p>
+<p>抢断优先级，顾名思义，能再别人中断是抢占别人中断，实现中断嵌套。响应优先级则只能排队，不能抢在前面插别人的对，即不能嵌套。</p>
+<p>STM32中指定优先级的寄存器为4位，其定义如下：</p>
+<p>第0组：所有4位用于指定响应优先级<br>第1组：最高1位用于指定抢占式优先级，最低3位用于指定响应优先级<br>第2组：最高2位用于指定抢占式优先级，最低2位用于指定响应优先级<br>第3组：最高3位用于指定抢占式优先级，最低1位用于指定响应优先级<br>第4组：所有4位用于指定抢占式优先级</p>
+<p>以上定义也称作中断优先级分组，相关内容在STM32固件库的misc.h文件中有详细定义。</p>
+<p>基础了解了就可以对中断进行操作了。</p>
+<p>第一步：使用void NVIC_PriorityGroupConfig(uint32_t NVIC_PriorityGroup)函数对优先级分组配置。NVIC_PriorityGroup可以配置为</p>
+<p>NVIC_PriorityGroup_0 =&gt; 选择第0组<br>NVIC_PriorityGroup_1 =&gt; 选择第1组<br>NVIC_PriorityGroup_2 =&gt; 选择第2组<br>NVIC_PriorityGroup_3 =&gt; 选择第3组<br>NVIC_PriorityGroup_4 =&gt; 选择第4组</p>
+<p>例如：NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0)配置为0组。</p>
+<p>第二步：中断初始化结构体配置，结构体类型定义如下：</p>
+<p><pre class="lang:default decode:true ">typedef struct</pre></p>
+<p>{</p>
+<p>  uint8_t NVIC_IRQChannel;                 </p>
+<p>  uint8_t NVIC_IRQChannelPreemptionPriority;  //抢断优先级</p>
+<p>  uint8_t NVIC_IRQChannelSubPriority;  //响应优先级      </p>
+<p>  FunctionalState NVIC_IRQChannelCmd;      </p>
+<p>} NVIC_InitTypeDef;<br>&nbsp;</p>
+<p>&nbsp;</p>
+<p>例如：STM32外部中断0配置如下</p>
+<p>&nbsp;</p>
+<p><pre class="lang:default decode:true "> EXTI_NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;</pre></p>
+<pre><code>EXTI_NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;  //抢占优先级别(0~1)
+
+EXTI_NVIC_InitStructure.NVIC_IRQChannelSubPriority = 7;  //响应优先级别(0~7)
+
+EXTI_NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+</code></pre><p><br>&nbsp;</p>
+<p>第三步：中断初始化结构体初始化操作如下</p>
+<p>&nbsp;</p>
+<p><pre class="lang:default decode:true "> NVIC_Init(&amp;EXTI_NVIC_InitStructure);</pre><br>&nbsp;</p>
+<p>&nbsp;</p>
+<p>第四步：开关总中断操作。在STM32中是通过改变CPU优先级来允许和禁止中断的。</p>
+<p>（1）   下面两个函数等效关闭总中断</p>
+<p><pre class="lang:default decode:true ">void NVIC_SETPRIMASK(void)；<br>void NVIC_SETFAULTMASK(void)；</pre><br>&nbsp;</p>
+<p>（2）   下面两个函数等效开放总中断</p>
+<p><pre class="lang:default decode:true ">void NVIC_RESETPRIMASK(void)；<br>void NVIC_RESETFAULTMASK(void)；</pre><br>&nbsp;</p>
+<p>（3）   常用操作是先关后开中断</p>
+<p><pre class="lang:default decode:true ">NVIC_SETPRIMASK();     // Disable Interrupts<br>NVIC_RESETPRIMASK(); // Enable Interrupts</pre><br>&nbsp;</p>
+<p>两种类型函数要成对使用</p>
+<p></p></div><br><!--more--><p></p>
+<!--more-->
+<!--more-->
+<!--more-->
+<!--more-->
+<!--more-->
+<!--more-->
+<!--more-->
+<!--more-->
+<!--more-->
+<!--more-->
+<!--more-->
+<p><div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1449392761418"></div></p>
+<p><div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1449392761418">转载自<a href="http://blog.chinaunix.net/uid-22670933-id-3443085.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-22670933-id-3443085.html</a></div><br><!--more--></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.xlife.link/2015/12/06/牛人对STM32的NVIC_PriorityGroupConfig使用及优先级分组方式理解/" data-id="cjgaps60e0017bgnuqubywxte" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/">stm32</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/30/C#用mouse_event控制鼠标，可以自制按键精灵了~/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          C#用mouse_event控制鼠标，可以自制按键精灵了~
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Ubuntu terminal window always 80x1, can&#39;t resize</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/">C语言学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/扯淡/">扯淡</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言学习/未分类/">未分类</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo教程/">hexo教程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/上位机/">上位机</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/单片机学习/">单片机学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/">图像处理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/图像处理/扯淡/">扯淡</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/小小荣耀6/">小小荣耀6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/未分类/">未分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emgucv/">Emgucv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo教程/">hexo教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/函数指针/">函数指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图像处理/">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编/">汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡扯淡/">胡扯淡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚拟鼠标/">虚拟鼠标</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Emgucv/" style="font-size: 20px;">Emgucv</a> <a href="/tags/hexo教程/" style="font-size: 10px;">hexo教程</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/函数指针/" style="font-size: 10px;">函数指针</a> <a href="/tags/图像处理/" style="font-size: 15px;">图像处理</a> <a href="/tags/汇编/" style="font-size: 10px;">汇编</a> <a href="/tags/胡扯淡/" style="font-size: 10px;">胡扯淡</a> <a href="/tags/虚拟鼠标/" style="font-size: 10px;">虚拟鼠标</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/22/如何用hexo新建文章？/">如何用hexo新建文章？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/16/yuv序列分割成奇偶序列后编码传输/">对yuv视频奇偶列实现低损分割</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/18/C语言Hack实践/">C语言Hack实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/19/ubuntu-terminal-window-always-80x1-cant-resize/">Ubuntu terminal window always 80x1, can&#39;t resize</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 李鑫<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
